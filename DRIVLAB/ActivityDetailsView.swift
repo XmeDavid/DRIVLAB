@@ -7,24 +7,33 @@
 
 import SwiftUI
 
-struct Activity: Identifiable {
-    var id: Int
-    var name: String
-    
-}
+
 
 struct ActivityDetailsView: View {
-    var activity: Activity
+    var activity: Drive
     var body: some View {
-        Text(activity.name)
+        VStack(alignment: .leading){
+            Text("Report")
+                .font(.title3)
+            Text("Drive #" + String(activity.id))
+                .font(.title)
+            Text("from " + activity.getDate())
+                .font(.title2)
+            Divider()
+            Text("Average Speed: " + String(activity.averageSpeed))
+            Text("Infractions Made: " + String(activity.infractionsMade))
+            Spacer()
+        }.padding()
     }
 }
 
 struct ActivityDetailsView_Previews: PreviewProvider {
     
-    static let activityPreview = Activity(
+    static let activityPreview = Drive(
             id: 0,
-            name: "Test"
+            date: Date(),
+            infractionsMade: 2,
+            averageSpeed: 64.23
         )
     
     static var previews: some View {

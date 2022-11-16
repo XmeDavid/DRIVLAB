@@ -28,10 +28,9 @@ struct ProfileView: View {
                         Text("David Batista").font(.largeTitle)
                     }
                     Spacer()
-                    
-                        
                 }
-                Divider()
+                Divider() 
+                ProfileStatsView()
                 ActivityView()
             }
             .navigationBarTitleDisplayMode(.inline)

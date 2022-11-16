@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct ActivityView: View {
-    let activities: [Activity] = [
-        Activity(id: 1, name: "Hey1"),
-        Activity(id: 2, name: "Hey2"),
-        Activity(id: 3, name: "Hey3"),
-        Activity(id: 4, name: "Hey4"),
+    let activities: [Drive] = [
+        Drive(
+                id: 1,
+                date: Date(),
+                infractionsMade: 2,
+                averageSpeed: 64.23
+            )
     ]
     var body: some View {
         NavigationStack(){
             List(activities){ activity in
-                NavigationLink(activity.name){
+                NavigationLink("Activity #" + String(activity.id)){
                     ActivityDetailsView(activity: activity)
                 }
             }

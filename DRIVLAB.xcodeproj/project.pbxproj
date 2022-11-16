@@ -20,6 +20,9 @@
 		373E5C78292522EE00631727 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C77292522EE00631727 /* ActivityView.swift */; };
 		373E5C7A292525F800631727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C79292525F800631727 /* SettingsView.swift */; };
 		373E5C7C2925403B00631727 /* ActivityDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C7B2925403B00631727 /* ActivityDetailsView.swift */; };
+		373E5CC229258BBE00631727 /* ProfileStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5CC129258BBE00631727 /* ProfileStatsView.swift */; };
+		373E5CC429258BEB00631727 /* Drive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5CC329258BEB00631727 /* Drive.swift */; };
+		373E5CC629258C0100631727 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5CC529258C0100631727 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		373E5C77292522EE00631727 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		373E5C79292525F800631727 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		373E5C7B2925403B00631727 /* ActivityDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsView.swift; sourceTree = "<group>"; };
+		373E5CC129258BBE00631727 /* ProfileStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatsView.swift; sourceTree = "<group>"; };
+		373E5CC329258BEB00631727 /* Drive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive.swift; sourceTree = "<group>"; };
+		373E5CC529258C0100631727 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,8 @@
 		373E5C4629251CDA00631727 /* DRIVLAB */ = {
 			isa = PBXGroup;
 			children = (
+				373E5CC129258BBE00631727 /* ProfileStatsView.swift */,
+				373E5CC029258BA300631727 /* Models */,
 				373E5C4729251CDA00631727 /* DRIVLABApp.swift */,
 				373E5C4929251CDA00631727 /* ContentView.swift */,
 				373E5C752925200400631727 /* LeaderboardView.swift */,
@@ -143,6 +151,15 @@
 				373E5C6429251CDD00631727 /* DRIVLABUITestsLaunchTests.swift */,
 			);
 			path = DRIVLABUITests;
+			sourceTree = "<group>";
+		};
+		373E5CC029258BA300631727 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				373E5CC329258BEB00631727 /* Drive.swift */,
+				373E5CC529258C0100631727 /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,10 +296,13 @@
 				373E5C762925200400631727 /* LeaderboardView.swift in Sources */,
 				373E5C7C2925403B00631727 /* ActivityDetailsView.swift in Sources */,
 				373E5C4A29251CDA00631727 /* ContentView.swift in Sources */,
+				373E5CC229258BBE00631727 /* ProfileStatsView.swift in Sources */,
 				373E5C7229251D7400631727 /* ProfileView.swift in Sources */,
+				373E5CC429258BEB00631727 /* Drive.swift in Sources */,
 				373E5C4829251CDA00631727 /* DRIVLABApp.swift in Sources */,
 				373E5C7429251DBB00631727 /* CameraView.swift in Sources */,
 				373E5C78292522EE00631727 /* ActivityView.swift in Sources */,
+				373E5CC629258C0100631727 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
