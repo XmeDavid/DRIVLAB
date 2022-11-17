@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
-//import Firebase
+import Firebase
 
 @main
 struct DRIVLABApp: App {
     
-    //init(){FirebaseApp.configure()}
+    init(){FirebaseApp.configure()}
     
     var body: some Scene {
         WindowGroup {

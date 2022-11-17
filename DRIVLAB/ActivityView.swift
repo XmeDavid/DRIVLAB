@@ -7,23 +7,24 @@
 
 import SwiftUI
 
+
 struct ActivityView: View {
-    let activities: [Drive] = [
-        Drive(
-                id: 1,
-                date: Date(),
-                infractionsMade: 2,
-                averageSpeed: 64.23
-            )
-    ]
+    
+    
+    @ObservedObject var drivesModel = DrivesViewModel()
+    
+    
     var body: some View {
         NavigationStack(){
-            List(activities){ activity in
-                NavigationLink("Activity #" + String(activity.id)){
-                    ActivityDetailsView(activity: activity)
+            List(drivesModel.drives){ drive in
+                NavigationLink("Activity #" + String(drive.id)){
+                    ActivityDetailsView(activity: drive)
                 }
             }
             .navigationTitle("Recent Activity")
+            .onAppear(){
+                self.drivesModel.fetchData()
+            }
         }
     }
 }

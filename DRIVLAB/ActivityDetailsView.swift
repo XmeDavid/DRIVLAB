@@ -13,12 +13,10 @@ struct ActivityDetailsView: View {
     var activity: Drive
     var body: some View {
         VStack(alignment: .leading){
-            Text("Report")
+            Text("Report #" + String(activity.id))
                 .font(.title3)
-            Text("Drive #" + String(activity.id))
-                .font(.title)
             Text("from " + activity.getDate())
-                .font(.title2)
+                .font(.title)
             Divider()
             Text("Average Speed: " + String(activity.averageSpeed))
             Text("Infractions Made: " + String(activity.infractionsMade))
@@ -30,7 +28,7 @@ struct ActivityDetailsView: View {
 struct ActivityDetailsView_Previews: PreviewProvider {
     
     static let activityPreview = Drive(
-            id: 0,
+            id: "UUID0",
             date: Date(),
             infractionsMade: 2,
             averageSpeed: 64.23

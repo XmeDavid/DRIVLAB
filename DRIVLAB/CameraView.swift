@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct CameraView: View {
+    
+    private func newDrive(){
+        DrivesViewModel().addData(drive: Drive(
+            date: Date(),
+            infractionsMade: Int(arc4random_uniform(20)),
+            averageSpeed: drand48()*100
+        ))
+    }
+    
     var body: some View {
-        Text("Camera View")
+        Button("New Drive",action: newDrive)
     }
 }
 

@@ -29,7 +29,7 @@ struct ProfileView: View {
                     }
                     Spacer()
                 }
-                Divider() 
+                Divider()
                 ProfileStatsView()
                 ActivityView()
             }
