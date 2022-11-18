@@ -28,7 +28,7 @@
 		373E5CCD29258E8500631727 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 373E5CCC29258E8400631727 /* GoogleService-Info.plist */; };
 		37E78C10292686FB00DA1232 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C0F292686FB00DA1232 /* AboutView.swift */; };
 		37E78C122926B94500DA1232 /* PodiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C112926B94500DA1232 /* PodiumView.swift */; };
-		37E78C152927D02300DA1232 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C142927D02300DA1232 /* ViewController.swift */; };
+		37E78C152927D02300DA1232 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C142927D02300DA1232 /* LocationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +71,7 @@
 		373E5CCC29258E8400631727 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37E78C0F292686FB00DA1232 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		37E78C112926B94500DA1232 /* PodiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumView.swift; sourceTree = "<group>"; };
-		37E78C142927D02300DA1232 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		37E78C142927D02300DA1232 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +189,7 @@
 		37E78C132927CF9900DA1232 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				37E78C142927D02300DA1232 /* ViewController.swift */,
+				37E78C142927D02300DA1232 /* LocationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -336,7 +336,7 @@
 				373E5C762925200400631727 /* LeaderboardView.swift in Sources */,
 				373E5C7C2925403B00631727 /* DriveDetailsView.swift in Sources */,
 				373E5C4A29251CDA00631727 /* ContentView.swift in Sources */,
-				37E78C152927D02300DA1232 /* ViewController.swift in Sources */,
+				37E78C152927D02300DA1232 /* LocationController.swift in Sources */,
 				37E78C10292686FB00DA1232 /* AboutView.swift in Sources */,
 				373E5CC229258BBE00631727 /* ProfileStatsView.swift in Sources */,
 				373E5C7229251D7400631727 /* ProfileView.swift in Sources */,
@@ -501,17 +501,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DRIVLAB/Preview Content\"";
 				DEVELOPMENT_TEAM = ZQ6CKMW9NA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -530,17 +533,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DRIVLAB/Preview Content\"";
 				DEVELOPMENT_TEAM = ZQ6CKMW9NA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

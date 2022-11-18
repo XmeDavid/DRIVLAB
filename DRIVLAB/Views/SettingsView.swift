@@ -9,14 +9,11 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @State private var randomVar: Bool = false
-    
     var body: some View {
         NavigationStack{
             List{
                 Section{
-                    NavigationLink("Activity from ", destination: LeaderboardView())
-                    Toggle("Show welcom message", isOn: $randomVar)
+                    
                 }
                 Section{
                     NavigationLink("About", destination: AboutView())

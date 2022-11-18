@@ -62,7 +62,6 @@ class DrivesViewModel: ObservableObject{
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                print(querySnapshot!.documents)
                 self.drives = querySnapshot!.documents.map{ queryDocumentSnapshot -> Drive in
                     let data = queryDocumentSnapshot.data()
                     let id = data["id"] as? String ?? ""
@@ -78,7 +77,6 @@ class DrivesViewModel: ObservableObject{
                         distance: distance
                     )
                 }
-                print(self.drives)
             }
         }
     }

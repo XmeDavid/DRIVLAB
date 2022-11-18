@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CameraView: View {
     
+    @ObservedObject var locationViewModel = LocationViewModel()
+    
     private func newDrive(){
         DrivesViewModel().addData(drive: Drive(
             date: Date(),
@@ -19,7 +21,15 @@ struct CameraView: View {
     }
     
     var body: some View {
-        Button("New Drive",action: newDrive)
+        
+        VStack {
+            Text("\(Int(locationViewModel.currentSpeed))")
+                .font(.system(size: 82.0))
+                .fontWeight(.regular)
+            Spacer()
+            
+            Button("New Drive",action: newDrive)
+        }.padding()
     }
 }
 
