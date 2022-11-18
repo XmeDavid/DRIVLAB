@@ -17,15 +17,18 @@
 		373E5C7229251D7400631727 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C7129251D7400631727 /* ProfileView.swift */; };
 		373E5C7429251DBB00631727 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C7329251DBB00631727 /* CameraView.swift */; };
 		373E5C762925200400631727 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C752925200400631727 /* LeaderboardView.swift */; };
-		373E5C78292522EE00631727 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C77292522EE00631727 /* ActivityView.swift */; };
+		373E5C78292522EE00631727 /* RecentActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C77292522EE00631727 /* RecentActivityView.swift */; };
 		373E5C7A292525F800631727 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C79292525F800631727 /* SettingsView.swift */; };
-		373E5C7C2925403B00631727 /* ActivityDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C7B2925403B00631727 /* ActivityDetailsView.swift */; };
+		373E5C7C2925403B00631727 /* DriveDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C7B2925403B00631727 /* DriveDetailsView.swift */; };
 		373E5CC229258BBE00631727 /* ProfileStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5CC129258BBE00631727 /* ProfileStatsView.swift */; };
 		373E5CC429258BEB00631727 /* Drive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5CC329258BEB00631727 /* Drive.swift */; };
 		373E5CC629258C0100631727 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5CC529258C0100631727 /* User.swift */; };
 		373E5CC929258D5800631727 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 373E5CC829258D5800631727 /* FirebaseFirestore */; };
 		373E5CCB29258D5800631727 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 373E5CCA29258D5800631727 /* FirebaseFirestoreSwift */; };
 		373E5CCD29258E8500631727 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 373E5CCC29258E8400631727 /* GoogleService-Info.plist */; };
+		37E78C10292686FB00DA1232 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C0F292686FB00DA1232 /* AboutView.swift */; };
+		37E78C122926B94500DA1232 /* PodiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C112926B94500DA1232 /* PodiumView.swift */; };
+		37E78C152927D02300DA1232 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C142927D02300DA1232 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,13 +62,16 @@
 		373E5C7129251D7400631727 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		373E5C7329251DBB00631727 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		373E5C752925200400631727 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
-		373E5C77292522EE00631727 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		373E5C77292522EE00631727 /* RecentActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentActivityView.swift; sourceTree = "<group>"; };
 		373E5C79292525F800631727 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		373E5C7B2925403B00631727 /* ActivityDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsView.swift; sourceTree = "<group>"; };
+		373E5C7B2925403B00631727 /* DriveDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveDetailsView.swift; sourceTree = "<group>"; };
 		373E5CC129258BBE00631727 /* ProfileStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatsView.swift; sourceTree = "<group>"; };
 		373E5CC329258BEB00631727 /* Drive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive.swift; sourceTree = "<group>"; };
 		373E5CC529258C0100631727 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		373E5CCC29258E8400631727 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		37E78C0F292686FB00DA1232 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		37E78C112926B94500DA1232 /* PodiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumView.swift; sourceTree = "<group>"; };
+		37E78C142927D02300DA1232 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,17 +124,11 @@
 		373E5C4629251CDA00631727 /* DRIVLAB */ = {
 			isa = PBXGroup;
 			children = (
+				37E78C132927CF9900DA1232 /* ViewControllers */,
+				37E78C0E292682C300DA1232 /* Views */,
 				373E5CCC29258E8400631727 /* GoogleService-Info.plist */,
-				373E5CC129258BBE00631727 /* ProfileStatsView.swift */,
 				373E5CC029258BA300631727 /* Models */,
 				373E5C4729251CDA00631727 /* DRIVLABApp.swift */,
-				373E5C4929251CDA00631727 /* ContentView.swift */,
-				373E5C752925200400631727 /* LeaderboardView.swift */,
-				373E5C7329251DBB00631727 /* CameraView.swift */,
-				373E5C7129251D7400631727 /* ProfileView.swift */,
-				373E5C79292525F800631727 /* SettingsView.swift */,
-				373E5C77292522EE00631727 /* ActivityView.swift */,
-				373E5C7B2925403B00631727 /* ActivityDetailsView.swift */,
 				373E5C4B29251CDD00631727 /* Assets.xcassets */,
 				373E5C4D29251CDD00631727 /* Preview Content */,
 			);
@@ -167,6 +167,31 @@
 				373E5CC529258C0100631727 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		37E78C0E292682C300DA1232 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				373E5CC129258BBE00631727 /* ProfileStatsView.swift */,
+				373E5C4929251CDA00631727 /* ContentView.swift */,
+				373E5C752925200400631727 /* LeaderboardView.swift */,
+				373E5C7329251DBB00631727 /* CameraView.swift */,
+				373E5C7129251D7400631727 /* ProfileView.swift */,
+				373E5C79292525F800631727 /* SettingsView.swift */,
+				373E5C77292522EE00631727 /* RecentActivityView.swift */,
+				373E5C7B2925403B00631727 /* DriveDetailsView.swift */,
+				37E78C0F292686FB00DA1232 /* AboutView.swift */,
+				37E78C112926B94500DA1232 /* PodiumView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		37E78C132927CF9900DA1232 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				37E78C142927D02300DA1232 /* ViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,15 +334,18 @@
 			files = (
 				373E5C7A292525F800631727 /* SettingsView.swift in Sources */,
 				373E5C762925200400631727 /* LeaderboardView.swift in Sources */,
-				373E5C7C2925403B00631727 /* ActivityDetailsView.swift in Sources */,
+				373E5C7C2925403B00631727 /* DriveDetailsView.swift in Sources */,
 				373E5C4A29251CDA00631727 /* ContentView.swift in Sources */,
+				37E78C152927D02300DA1232 /* ViewController.swift in Sources */,
+				37E78C10292686FB00DA1232 /* AboutView.swift in Sources */,
 				373E5CC229258BBE00631727 /* ProfileStatsView.swift in Sources */,
 				373E5C7229251D7400631727 /* ProfileView.swift in Sources */,
 				373E5CC429258BEB00631727 /* Drive.swift in Sources */,
 				373E5C4829251CDA00631727 /* DRIVLABApp.swift in Sources */,
 				373E5C7429251DBB00631727 /* CameraView.swift in Sources */,
-				373E5C78292522EE00631727 /* ActivityView.swift in Sources */,
+				373E5C78292522EE00631727 /* RecentActivityView.swift in Sources */,
 				373E5CC629258C0100631727 /* User.swift in Sources */,
+				37E78C122926B94500DA1232 /* PodiumView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

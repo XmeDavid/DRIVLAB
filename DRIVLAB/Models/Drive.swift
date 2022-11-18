@@ -13,11 +13,36 @@ struct Drive: Identifiable {
     var date: Date
     var infractionsMade: Int
     var averageSpeed: Double
+    var distance: Double
     
-    func getDate() -> String{
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter.string(from: date)
+    func dateString() -> String{
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy"
+        return df.string(from: date)
+    }
+    
+    func timeString() -> String{
+        let df = DateFormatter()
+        df.dateFormat = "HH:mm"
+        return df.string(from: date)
+    }
+    
+    func dateTime() -> String{
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy HH:mm"
+        return df.string(from: date)
+    }
+    
+    static func getDate(str: String) -> Date{
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        return df.date(from: str) ?? Date()
+    }
+    
+    static func getDate(date: Date) -> String{
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        return df.string(from: date)
     }
 }
 
@@ -28,7 +53,7 @@ class DrivesViewModel: ObservableObject{
     private var db = Firestore.firestore()
     
     func addData(drive: Drive){
-        db.collection("drives").addDocument(data: ["id": drive.id, "date": drive.date, "infractionsMade": drive.infractionsMade, "averageSpeed": drive.averageSpeed])
+        db.collection("drives").addDocument(data: ["id": drive.id, "date": Drive.getDate(date: drive.date), "infractionsMade": drive.infractionsMade, "averageSpeed": drive.averageSpeed, "distance": drive.distance])
 
     }
     
@@ -40,16 +65,17 @@ class DrivesViewModel: ObservableObject{
                 print(querySnapshot!.documents)
                 self.drives = querySnapshot!.documents.map{ queryDocumentSnapshot -> Drive in
                     let data = queryDocumentSnapshot.data()
-                    print(data)
                     let id = data["id"] as? String ?? ""
-                    //let date = data["date"] as? String ?? ""
+                    let date = Drive.getDate(str: data["date"] as? String ?? "")
                     let infractions = data["infractionsMade"] as? Int ?? 0
                     let speed = data["averageSpeed"] as? Double ?? 0.0
+                    let distance = data["distance"] as? Double ?? 0.0
                     return Drive(
                         id: id,
-                        date: Date(),
+                        date: date,
                         infractionsMade: infractions,
-                        averageSpeed: speed
+                        averageSpeed: speed,
+                        distance: distance
                     )
                 }
                 print(self.drives)
