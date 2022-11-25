@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct LeaderboardView: View {
+    
+    @ObservedObject var usersViewModel = UsersViewModel()
+    
     var body: some View {
         VStack{
             PodiumView()
             ProfileStatsView()
-            
+            RankingsView(users:usersViewModel.users)
+        }.onAppear(){
+            usersViewModel.fetchData()
         }
     }
 }

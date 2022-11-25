@@ -26,6 +26,7 @@ struct DriveDetailsView_Previews: PreviewProvider {
     
     static let drivePreview = Drive(
             id: "0",
+            user_id: "User #0",
             date: Date(),
             infractionsMade: 0,
             averageSpeed: 0.0,

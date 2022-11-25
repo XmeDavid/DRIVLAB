@@ -10,6 +10,7 @@ import FirebaseFirestore
 
 struct Drive: Identifiable {
     var id: String = UUID().uuidString
+    var user_id: String
     var date: Date
     var infractionsMade: Int
     var averageSpeed: Double
@@ -53,7 +54,7 @@ class DrivesViewModel: ObservableObject{
     private var db = Firestore.firestore()
     
     func addData(drive: Drive){
-        db.collection("drives").addDocument(data: ["id": drive.id, "date": Drive.getDate(date: drive.date), "infractionsMade": drive.infractionsMade, "averageSpeed": drive.averageSpeed, "distance": drive.distance])
+        db.collection("drives").addDocument(data: ["id": drive.id, "user_id": drive.user_id, "date": Drive.getDate(date: drive.date), "infractionsMade": drive.infractionsMade, "averageSpeed": drive.averageSpeed, "distance": drive.distance])
 
     }
     
@@ -65,12 +66,14 @@ class DrivesViewModel: ObservableObject{
                 self.drives = querySnapshot!.documents.map{ queryDocumentSnapshot -> Drive in
                     let data = queryDocumentSnapshot.data()
                     let id = data["id"] as? String ?? ""
+                    let user_id = data["user_id"] as? String ?? ""
                     let date = Drive.getDate(str: data["date"] as? String ?? "")
                     let infractions = data["infractionsMade"] as? Int ?? 0
                     let speed = data["averageSpeed"] as? Double ?? 0.0
                     let distance = data["distance"] as? Double ?? 0.0
                     return Drive(
                         id: id,
+                        user_id: user_id,
                         date: date,
                         infractionsMade: infractions,
                         averageSpeed: speed,

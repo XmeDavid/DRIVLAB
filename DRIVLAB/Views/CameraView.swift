@@ -13,6 +13,7 @@ struct CameraView: View {
     
     private func newDrive(){
         DrivesViewModel().addData(drive: Drive(
+            user_id: "1",
             date: Date(),
             infractionsMade: Int(arc4random_uniform(20)),
             averageSpeed: drand48()*150,

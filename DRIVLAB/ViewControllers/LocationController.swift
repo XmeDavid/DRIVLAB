@@ -24,7 +24,7 @@ class LocationViewModel: NSObject, ObservableObject {
       self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
       self.locationManager.requestWhenInUseAuthorization()
       self.locationManager.startUpdatingLocation()
-      //self.locationManager.allowsBackgroundLocationUpdates = false
+      self.locationManager.allowsBackgroundLocationUpdates = false
     }
     
     func stopUpdates() {

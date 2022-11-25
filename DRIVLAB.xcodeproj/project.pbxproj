@@ -26,6 +26,8 @@
 		373E5CC929258D5800631727 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 373E5CC829258D5800631727 /* FirebaseFirestore */; };
 		373E5CCB29258D5800631727 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 373E5CCA29258D5800631727 /* FirebaseFirestoreSwift */; };
 		373E5CCD29258E8500631727 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 373E5CCC29258E8400631727 /* GoogleService-Info.plist */; };
+		37C32465292FB26000824107 /* RankingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C32464292FB26000824107 /* RankingsView.swift */; };
+		37C32467292FB28D00824107 /* RankingLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C32466292FB28D00824107 /* RankingLineView.swift */; };
 		37E78C10292686FB00DA1232 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C0F292686FB00DA1232 /* AboutView.swift */; };
 		37E78C122926B94500DA1232 /* PodiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C112926B94500DA1232 /* PodiumView.swift */; };
 		37E78C152927D02300DA1232 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C142927D02300DA1232 /* LocationController.swift */; };
@@ -69,6 +71,8 @@
 		373E5CC329258BEB00631727 /* Drive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive.swift; sourceTree = "<group>"; };
 		373E5CC529258C0100631727 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		373E5CCC29258E8400631727 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		37C32464292FB26000824107 /* RankingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingsView.swift; sourceTree = "<group>"; };
+		37C32466292FB28D00824107 /* RankingLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingLineView.swift; sourceTree = "<group>"; };
 		37E78C0F292686FB00DA1232 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		37E78C112926B94500DA1232 /* PodiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumView.swift; sourceTree = "<group>"; };
 		37E78C142927D02300DA1232 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 				373E5C7B2925403B00631727 /* DriveDetailsView.swift */,
 				37E78C0F292686FB00DA1232 /* AboutView.swift */,
 				37E78C112926B94500DA1232 /* PodiumView.swift */,
+				37C32464292FB26000824107 /* RankingsView.swift */,
+				37C32466292FB28D00824107 /* RankingLineView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 			files = (
 				373E5C7A292525F800631727 /* SettingsView.swift in Sources */,
 				373E5C762925200400631727 /* LeaderboardView.swift in Sources */,
+				37C32465292FB26000824107 /* RankingsView.swift in Sources */,
 				373E5C7C2925403B00631727 /* DriveDetailsView.swift in Sources */,
 				373E5C4A29251CDA00631727 /* ContentView.swift in Sources */,
 				37E78C152927D02300DA1232 /* LocationController.swift in Sources */,
@@ -344,6 +351,7 @@
 				373E5C4829251CDA00631727 /* DRIVLABApp.swift in Sources */,
 				373E5C7429251DBB00631727 /* CameraView.swift in Sources */,
 				373E5C78292522EE00631727 /* RecentActivityView.swift in Sources */,
+				37C32467292FB28D00824107 /* RankingLineView.swift in Sources */,
 				373E5CC629258C0100631727 /* User.swift in Sources */,
 				37E78C122926B94500DA1232 /* PodiumView.swift in Sources */,
 			);
@@ -509,6 +517,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app will us eyour location for speed";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -541,6 +550,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app will us eyour location for speed";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
