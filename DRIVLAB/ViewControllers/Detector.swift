@@ -5,10 +5,13 @@ import UIKit
 extension CameraController {
     
     func setupDetector() {
-        let modelURL = Bundle.main.url(forResource: "yolov5sTraffic", withExtension: "mlmodelc")
+        guard let modelURL = Bundle.main.url(forResource: "yolov5sTraffic", withExtension: "mlmodelc") else {
+            print("Error - Could not load model")
+            return
+        }
     
         do {
-            let visionModel = try VNCoreMLModel(for: MLModel(contentsOf: modelURL!))
+            let visionModel = try VNCoreMLModel(for: MLModel(contentsOf: modelURL))
             let recognitions = VNCoreMLRequest(model: visionModel, completionHandler: detectionDidComplete)
             self.requests = [recognitions]
         } catch let error {
@@ -26,17 +29,39 @@ extension CameraController {
     
     func extractDetections(_ results: [VNObservation]) {
         detectionLayer.sublayers = nil
-        
+        detectionLayer.zPosition = 1000.0
         for observation in results where observation is VNRecognizedObjectObservation {
             guard let objectObservation = observation as? VNRecognizedObjectObservation else { continue }
             
+            
+            let topLabelObservation = objectObservation.labels[0]
+            let label = topLabelObservation.identifier
+            let confidence = topLabelObservation.confidence
+            
+            print("label: \(label)   -  confidence: \(confidence)  -- \(objectObservation.boundingBox)")
+            
+
+            let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
+            
+            // Visualize results if selected in settings
+            let visualizeDetections = UserDefaults.standard.bool(forKey: "visualizeDetections")
+            let showLabels = UserDefaults.standard.bool(forKey: "showLabels")
+           
+            let boxLayer = self.drawBoxes(objectBounds, label: label)
+            detectionLayer.addSublayer(boxLayer)
+        
+            let labelLayer = self.drawLabels(objectBounds, label: label, confidence: confidence)
+            detectionLayer.addSublayer(labelLayer)
+            
+            
+            return/*
             // Transformations
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(screenRect.size.width), Int(screenRect.size.height))
             let transformedBounds = CGRect(x: objectBounds.minX, y: screenRect.size.height - objectBounds.maxY, width: objectBounds.maxX - objectBounds.minX, height: objectBounds.maxY - objectBounds.minY)
             
             let boxLayer = self.drawBoundingBox(transformedBounds)
 
-            detectionLayer.addSublayer(boxLayer)
+            detectionLayer.addSublayer(boxLayer)*/
         }
     }
     
@@ -48,6 +73,84 @@ extension CameraController {
     
     func updateLayers() {
         detectionLayer?.frame = CGRect(x: 0, y: 0, width: screenRect.size.width, height: screenRect.size.height)
+    }
+    
+    func drawLabels(_ bounds: CGRect, label: String, confidence: VNConfidence) -> CATextLayer {
+        let textLayer = CATextLayer()
+        textLayer.name = "Object Label"
+        
+        // Format the string
+        let font = UIFont.systemFont(ofSize: 30)
+        var colour = Constants.TextColours.light
+        
+        // Place the labels
+        let labelHeight: CGFloat = 40.0
+        let yPosOffset: CGFloat = 18.0
+        
+        if label == "traffic_light_red" {
+            textLayer.backgroundColor = Constants.BoxColours.trafficRed
+        }
+        else if label == "traffic_light_green" {
+            textLayer.backgroundColor = Constants.BoxColours.trafficGreen
+            colour = Constants.TextColours.dark
+        }
+        else if label == "traffic_light_na" {
+            textLayer.backgroundColor = Constants.BoxColours.trafficNa
+            colour = Constants.TextColours.dark
+        }
+        else if label == "stop sign" {
+            textLayer.backgroundColor = Constants.BoxColours.trafficRed
+        }
+        else if label == "bicycle" || label == "person" {
+            textLayer.backgroundColor = Constants.BoxColours.pedestrian
+        }
+        else {
+            textLayer.backgroundColor = Constants.BoxColours.misc
+        }
+        
+        let attribute = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: colour] as [NSAttributedString.Key : Any]
+        let formattedString = NSMutableAttributedString(string: String(format: "\(label) (%.2f)", confidence), attributes: attribute)
+        textLayer.string = formattedString
+        
+        let boxWidth: CGFloat = CGFloat(formattedString.length * 13)
+        textLayer.bounds = CGRect(x: 0, y: 0, width: boxWidth, height: labelHeight)
+        textLayer.position = CGPoint(x: bounds.minX+(boxWidth/2.0), y: bounds.maxY+yPosOffset)
+        
+        textLayer.foregroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 1.0])
+        textLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(0)).scaledBy(x: 1.0, y: 1.0))
+        return textLayer
+    }
+    
+    func drawBoxes(_ objectBounds: CGRect, label: String) -> CAShapeLayer {
+        let boxLayer = CAShapeLayer()
+        boxLayer.bounds = objectBounds
+        boxLayer.position = CGPoint(x: objectBounds.midX, y: objectBounds.midY)
+
+        boxLayer.cornerRadius = 4.0
+        boxLayer.borderWidth = 6.0
+        // Box colour depending on label
+        // Hierachy: Red > Green > stop sign
+        if label == "traffic_light_red" || label == "stop sign" {
+            boxLayer.borderColor = Constants.BoxColours.trafficRed
+            boxLayer.borderWidth = 12.0
+        }
+        else if label == "traffic_light_green" {
+            boxLayer.borderColor = Constants.BoxColours.trafficGreen
+            boxLayer.borderWidth = 10.0
+        }
+        else if label == "traffic_light_na" {
+            boxLayer.borderColor = Constants.BoxColours.trafficNa
+            boxLayer.borderWidth = 10.0
+        }
+        else if label == "person" || label == "bicycle" {
+            boxLayer.borderColor = Constants.BoxColours.pedestrian
+            boxLayer.borderWidth = 10.0
+        }
+       
+        else {
+            boxLayer.borderColor = Constants.BoxColours.misc
+        }
+        return boxLayer
     }
     
     func drawBoundingBox(_ bounds: CGRect) -> CALayer {

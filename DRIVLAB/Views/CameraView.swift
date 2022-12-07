@@ -23,7 +23,7 @@ struct CameraView: View {
     
     var body: some View {
         
-        ZStack(alignment: .top) {
+        ZStack(alignment: .top){
             HostedCameraController().ignoresSafeArea()
             Text("\(Int(locationViewModel.currentSpeed))")
                 .font(.system(size: 82.0))

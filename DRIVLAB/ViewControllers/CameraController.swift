@@ -12,6 +12,7 @@ class CameraController: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
     var screenRect: CGRect! = nil // For view dimensions
     
     // Detector
+    var bufferSize: CGSize = .zero
     private var videoOutput = AVCaptureVideoDataOutput()
     var requests = [VNRequest]()
     var detectionLayer: CALayer! = nil
@@ -95,6 +96,8 @@ class CameraController: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
                          
         // Preview layer
         screenRect = UIScreen.main.bounds
+        bufferSize.width = screenRect.width
+        bufferSize.height = screenRect.height
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = CGRect(x: 0, y: 0, width: screenRect.size.width, height: screenRect.size.height)
