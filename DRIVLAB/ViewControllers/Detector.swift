@@ -5,7 +5,7 @@ import UIKit
 extension CameraController {
     
     func setupDetector() {
-        let modelURL = Bundle.main.url(forResource: "YOLOv3TinyInt8LUT", withExtension: "mlmodelc")
+        let modelURL = Bundle.main.url(forResource: "yolov5sTraffic", withExtension: "mlmodelc")
     
         do {
             let visionModel = try VNCoreMLModel(for: MLModel(contentsOf: modelURL!))
