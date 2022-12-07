@@ -53,6 +53,7 @@ extension CameraController {
             let labelLayer = self.drawLabels(objectBounds, label: label, confidence: confidence)
             detectionLayer.addSublayer(labelLayer)
             
+            detectionLayer.transform  = CATransform3DMakeScale(1, -1, 1)
             
             return/*
             // Transformations
@@ -117,7 +118,7 @@ extension CameraController {
         textLayer.position = CGPoint(x: bounds.minX+(boxWidth/2.0), y: bounds.maxY+yPosOffset)
         
         textLayer.foregroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 1.0])
-        textLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(0)).scaledBy(x: 1.0, y: 1.0))
+        textLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(0)).scaledBy(x: 1.0, y: -1.0))
         return textLayer
     }
     
