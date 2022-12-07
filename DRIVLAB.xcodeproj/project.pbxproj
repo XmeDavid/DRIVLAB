@@ -28,6 +28,9 @@
 		373E5CCD29258E8500631727 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 373E5CCC29258E8400631727 /* GoogleService-Info.plist */; };
 		37C32465292FB26000824107 /* RankingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C32464292FB26000824107 /* RankingsView.swift */; };
 		37C32467292FB28D00824107 /* RankingLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C32466292FB28D00824107 /* RankingLineView.swift */; };
+		37C3246B293FC4CA00824107 /* YOLOv3TinyInt8LUT.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 37C32468293FC4C900824107 /* YOLOv3TinyInt8LUT.mlmodel */; };
+		37C3246C293FC4CA00824107 /* Detector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C32469293FC4C900824107 /* Detector.swift */; };
+		37C3246D293FC4CA00824107 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C3246A293FC4CA00824107 /* CameraController.swift */; };
 		37E78C10292686FB00DA1232 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C0F292686FB00DA1232 /* AboutView.swift */; };
 		37E78C122926B94500DA1232 /* PodiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C112926B94500DA1232 /* PodiumView.swift */; };
 		37E78C152927D02300DA1232 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C142927D02300DA1232 /* LocationController.swift */; };
@@ -73,6 +76,9 @@
 		373E5CCC29258E8400631727 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37C32464292FB26000824107 /* RankingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingsView.swift; sourceTree = "<group>"; };
 		37C32466292FB28D00824107 /* RankingLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingLineView.swift; sourceTree = "<group>"; };
+		37C32468293FC4C900824107 /* YOLOv3TinyInt8LUT.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3TinyInt8LUT.mlmodel; sourceTree = "<group>"; };
+		37C32469293FC4C900824107 /* Detector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detector.swift; sourceTree = "<group>"; };
+		37C3246A293FC4CA00824107 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		37E78C0F292686FB00DA1232 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		37E78C112926B94500DA1232 /* PodiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumView.swift; sourceTree = "<group>"; };
 		37E78C142927D02300DA1232 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
@@ -195,6 +201,9 @@
 		37E78C132927CF9900DA1232 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				37C32469293FC4C900824107 /* Detector.swift */,
+				37C3246A293FC4CA00824107 /* CameraController.swift */,
+				37C32468293FC4C900824107 /* YOLOv3TinyInt8LUT.mlmodel */,
 				37E78C142927D02300DA1232 /* LocationController.swift */,
 			);
 			path = ViewControllers;
@@ -339,12 +348,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				373E5C7A292525F800631727 /* SettingsView.swift in Sources */,
+				37C3246D293FC4CA00824107 /* CameraController.swift in Sources */,
 				373E5C762925200400631727 /* LeaderboardView.swift in Sources */,
 				37C32465292FB26000824107 /* RankingsView.swift in Sources */,
 				373E5C7C2925403B00631727 /* DriveDetailsView.swift in Sources */,
 				373E5C4A29251CDA00631727 /* ContentView.swift in Sources */,
 				37E78C152927D02300DA1232 /* LocationController.swift in Sources */,
 				37E78C10292686FB00DA1232 /* AboutView.swift in Sources */,
+				37C3246B293FC4CA00824107 /* YOLOv3TinyInt8LUT.mlmodel in Sources */,
 				373E5CC229258BBE00631727 /* ProfileStatsView.swift in Sources */,
 				373E5C7229251D7400631727 /* ProfileView.swift in Sources */,
 				373E5CC429258BEB00631727 /* Drive.swift in Sources */,
@@ -354,6 +365,7 @@
 				37C32467292FB28D00824107 /* RankingLineView.swift in Sources */,
 				373E5CC629258C0100631727 /* User.swift in Sources */,
 				37E78C122926B94500DA1232 /* PodiumView.swift in Sources */,
+				37C3246C293FC4CA00824107 /* Detector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +529,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app will use the camera to detect your surrondings";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app will us eyour location for speed";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -550,6 +563,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app will use the camera to detect your surrondings";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app will us eyour location for speed";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

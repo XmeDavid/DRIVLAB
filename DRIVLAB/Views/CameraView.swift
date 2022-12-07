@@ -24,11 +24,12 @@ struct CameraView: View {
     var body: some View {
         
         VStack {
+            HostedCameraController()
+                .ignoresSafeArea()
             Text("\(Int(locationViewModel.currentSpeed))")
                 .font(.system(size: 82.0))
                 .fontWeight(.regular)
             Spacer()
-            
             Button("New Drive",action: newDrive)
         }.padding()
     }
