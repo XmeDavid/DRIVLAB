@@ -33,36 +33,23 @@ extension CameraController {
         for observation in results where observation is VNRecognizedObjectObservation {
             guard let objectObservation = observation as? VNRecognizedObjectObservation else { continue }
             
-            
             let topLabelObservation = objectObservation.labels[0]
             let label = topLabelObservation.identifier
             let confidence = topLabelObservation.confidence
             
-            print("label: \(label)   -  confidence: \(confidence)  -- \(objectObservation.boundingBox)")
-            
-
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
+
+            if UserDefaults.standard.bool(forKey: "visualizeDetections") == true {
+                let boxLayer = self.drawBoxes(objectBounds, label: label)
+                detectionLayer.addSublayer(boxLayer)
+            }
             
-            // Visualize results if selected in settings
-            let visualizeDetections = UserDefaults.standard.bool(forKey: "visualizeDetections")
-            let showLabels = UserDefaults.standard.bool(forKey: "showLabels")
-           
-            let boxLayer = self.drawBoxes(objectBounds, label: label)
-            detectionLayer.addSublayer(boxLayer)
-        
-            let labelLayer = self.drawLabels(objectBounds, label: label, confidence: confidence)
-            detectionLayer.addSublayer(labelLayer)
+            if UserDefaults.standard.bool(forKey: "showLabels") == true {
+                let labelLayer = self.drawLabels(objectBounds, label: label, confidence: confidence)
+                detectionLayer.addSublayer(labelLayer)
+            }
             
             detectionLayer.transform  = CATransform3DMakeScale(1, -1, 1)
-            
-            return/*
-            // Transformations
-            let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(screenRect.size.width), Int(screenRect.size.height))
-            let transformedBounds = CGRect(x: objectBounds.minX, y: screenRect.size.height - objectBounds.maxY, width: objectBounds.maxX - objectBounds.minX, height: objectBounds.maxY - objectBounds.minY)
-            
-            let boxLayer = self.drawBoundingBox(transformedBounds)
-
-            detectionLayer.addSublayer(boxLayer)*/
         }
     }
     

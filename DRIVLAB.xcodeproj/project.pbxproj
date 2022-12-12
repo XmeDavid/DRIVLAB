@@ -32,6 +32,7 @@
 		37C3246D293FC4CA00824107 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C3246A293FC4CA00824107 /* CameraController.swift */; };
 		37C3246F2941090A00824107 /* yolov5sTraffic.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 37C3246E2941090A00824107 /* yolov5sTraffic.mlmodel */; };
 		37C32477294119E400824107 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C32476294119E400824107 /* Constants.swift */; };
+		37C3247929473A9800824107 /* ModelSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C3247829473A9800824107 /* ModelSettingsView.swift */; };
 		37E78C10292686FB00DA1232 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C0F292686FB00DA1232 /* AboutView.swift */; };
 		37E78C122926B94500DA1232 /* PodiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C112926B94500DA1232 /* PodiumView.swift */; };
 		37E78C152927D02300DA1232 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C142927D02300DA1232 /* LocationController.swift */; };
@@ -81,6 +82,7 @@
 		37C3246A293FC4CA00824107 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		37C3246E2941090A00824107 /* yolov5sTraffic.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = yolov5sTraffic.mlmodel; sourceTree = "<group>"; };
 		37C32476294119E400824107 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		37C3247829473A9800824107 /* ModelSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSettingsView.swift; sourceTree = "<group>"; };
 		37E78C0F292686FB00DA1232 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		37E78C112926B94500DA1232 /* PodiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumView.swift; sourceTree = "<group>"; };
 		37E78C142927D02300DA1232 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				37E78C112926B94500DA1232 /* PodiumView.swift */,
 				37C32464292FB26000824107 /* RankingsView.swift */,
 				37C32466292FB28D00824107 /* RankingLineView.swift */,
+				37C3247829473A9800824107 /* ModelSettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				373E5C4829251CDA00631727 /* DRIVLABApp.swift in Sources */,
 				373E5C7429251DBB00631727 /* CameraView.swift in Sources */,
 				37C3246F2941090A00824107 /* yolov5sTraffic.mlmodel in Sources */,
+				37C3247929473A9800824107 /* ModelSettingsView.swift in Sources */,
 				373E5C78292522EE00631727 /* RecentActivityView.swift in Sources */,
 				37C32477294119E400824107 /* Constants.swift in Sources */,
 				37C32467292FB28D00824107 /* RankingLineView.swift in Sources */,

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CameraView: View {
     
+    @AppStorage("showSpeed") var showSpeed = true
     @ObservedObject var locationViewModel = LocationViewModel()
     
     private func newDrive(){
@@ -25,10 +26,13 @@ struct CameraView: View {
         
         ZStack(alignment: .top){
             HostedCameraController().ignoresSafeArea()
-            Text("\(Int(locationViewModel.currentSpeed))")
-                .font(.system(size: 82.0))
-                .fontWeight(.regular)
-                .padding()
+            if self.showSpeed == true {
+                Text("\(Int(locationViewModel.currentSpeed))")
+                    .font(.system(size: 82.0))
+                    .fontWeight(.regular)
+                    .padding()
+            }
+            
            // Button("New Drive",action: newDrive)
         }
     }
