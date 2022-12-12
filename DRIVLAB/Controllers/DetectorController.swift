@@ -50,6 +50,8 @@ extension CameraController {
             }
             
             detectionLayer.transform  = CATransform3DMakeScale(1, -1, 1)
+            
+            handleDetection(observation: objectObservation, bounds: objectBounds)
         }
     }
     

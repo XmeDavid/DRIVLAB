@@ -17,6 +17,11 @@ class CameraController: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
     var requests = [VNRequest]()
     var detectionLayer: CALayer! = nil
     
+    var stopSignEnteredFrame:Bool = false
+    var stopSignExitedFrame:Bool = false
+    var detectionsInstant: Queue<DetectorInstant> = Queue<DetectorInstant>()
+    var importantTimestamps: [String:Date] = [:]
+    
       
     override func viewDidLoad() {
         checkPermission()
