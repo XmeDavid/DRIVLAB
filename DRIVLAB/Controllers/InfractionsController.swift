@@ -7,6 +7,7 @@
 
 import Foundation
 import Vision
+import CoreLocation
 
 
 struct DetectorInstant{
@@ -58,7 +59,7 @@ extension CameraController {
     
     func handleDetection(observation: VNRecognizedObjectObservation, bounds: CGRect){
     
-        let speed = LocationViewModel().currentSpeed
+        let speed: Double = 50//LocationViewModel().currentSpeed
         let now = Date()
         let instant = DetectorInstant(
             dateTime: now,
@@ -99,17 +100,17 @@ extension CameraController {
         }
         
         if(stopSignEnteredFrame == false && stopSignExitedFrame == false){
-            print("No stop sign")
+            //print("No stop sign")
         }
         
         //Stop sign currently in frame
         if(stopSignEnteredFrame == true && stopSignExitedFrame == false){
-            print("Stop sign in Frame")
+            //print("Stop sign in Frame")
         }
         
         //Stop sign just exited
         if(stopSignEnteredFrame == false && stopSignExitedFrame == true){
-            print("Stop Sign just exited frame")
+            //print("Stop Sign just exited frame")
             checkStopInfraction()
         }
         
@@ -149,7 +150,7 @@ extension CameraController {
         }else {
             let timeSincePossibleInfraction = Date().timeIntervalSince(importantTimestamps["possible_stop_infraction"]!)
             //If 10 seconds have passed and there still was no stop a.k.a. wasSpeedZero = true, then its an infraction
-            if timeSincePossibleInfraction > 10 {createInfraction()}
+            if timeSincePossibleInfraction > 3 {createInfraction()}
         }
     }
     
@@ -157,12 +158,19 @@ extension CameraController {
     /// Create a document or something for the drive, and
     func createInfraction(){
         print("Infraction!!!!")
-        print("Infraction!!!!")
-        print("Infraction!!!!")
-        print("Infraction!!!! You missed the stop sign at \(importantTimestamps["stop_sign_enter_frame"] ?? Date())")
-        print("Infraction!!!!")
-        print("Infraction!!!!")
-        print("Infraction!!!!")
+        
+        var infraction: Infraction = Infraction(
+            driveId: UserDefaults.standard.string(forKey: "currentDriveId") ?? "Error - no Drive ID",
+            date: Date(),
+            coordinates: LocationViewModel().getCoordinates() ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
+            type: "stop sign"
+        )
+        InfractionViewModel().createInfraction(infraction: infraction)
+        
+        importantTimestamps["possible_stop_infraction"] = nil
+        importantTimestamps["stop_sign_exit_frame"] = nil
+        stopSignExitedFrame = false
+        stopSignExitedFrame = false
     }
     
 }

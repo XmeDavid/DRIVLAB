@@ -16,15 +16,16 @@ class LocationViewModel: NSObject, ObservableObject {
     @Published var currentSpeed: Double = 0
     @Published var unitString: String = "Km/h"
     
+    
     private let locationManager = CLLocationManager()
     
     override init() {
-      super.init()
-      self.locationManager.delegate = self
-      self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-      self.locationManager.requestWhenInUseAuthorization()
-      self.locationManager.startUpdatingLocation()
-      self.locationManager.allowsBackgroundLocationUpdates = false
+        super.init()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.startUpdatingLocation()
+        self.locationManager.allowsBackgroundLocationUpdates = false
     }
     
     func stopUpdates() {
@@ -42,12 +43,16 @@ extension LocationViewModel: CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         
         var speed = location.speed
-        
+
         if speed < 0 {
             speed = 0
         }
         
         currentSpeed = speed * 3.6
+    }
+    func getCoordinates() -> CLLocationCoordinate2D? {
+        print(locationManager.location?.coordinate ?? "")
+        return locationManager.location?.coordinate
     }
 }
 

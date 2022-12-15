@@ -79,10 +79,6 @@ class UsersViewModel: ObservableObject{
                 }
             }
         }
-        print(self.users)
     }
 }
 
-struct UserStats{
-    
-}

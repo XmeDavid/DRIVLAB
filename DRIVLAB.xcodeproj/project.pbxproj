@@ -34,6 +34,8 @@
 		37C32477294119E400824107 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C32476294119E400824107 /* Constants.swift */; };
 		37C3247929473A9800824107 /* ModelSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C3247829473A9800824107 /* ModelSettingsView.swift */; };
 		37C3247B29478ED800824107 /* InfractionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C3247A29478ED800824107 /* InfractionsController.swift */; };
+		37C3247D2948EBAE00824107 /* Infraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C3247C2948EBAE00824107 /* Infraction.swift */; };
+		37C3247F294A566600824107 /* InfractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C3247E294A566600824107 /* InfractionView.swift */; };
 		37E78C10292686FB00DA1232 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C0F292686FB00DA1232 /* AboutView.swift */; };
 		37E78C122926B94500DA1232 /* PodiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C112926B94500DA1232 /* PodiumView.swift */; };
 		37E78C152927D02300DA1232 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E78C142927D02300DA1232 /* LocationController.swift */; };
@@ -85,6 +87,8 @@
 		37C32476294119E400824107 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		37C3247829473A9800824107 /* ModelSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSettingsView.swift; sourceTree = "<group>"; };
 		37C3247A29478ED800824107 /* InfractionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfractionsController.swift; sourceTree = "<group>"; };
+		37C3247C2948EBAE00824107 /* Infraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Infraction.swift; sourceTree = "<group>"; };
+		37C3247E294A566600824107 /* InfractionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfractionView.swift; sourceTree = "<group>"; };
 		37E78C0F292686FB00DA1232 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		37E78C112926B94500DA1232 /* PodiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumView.swift; sourceTree = "<group>"; };
 		37E78C142927D02300DA1232 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 			children = (
 				373E5CC329258BEB00631727 /* Drive.swift */,
 				373E5CC529258C0100631727 /* User.swift */,
+				37C3247C2948EBAE00824107 /* Infraction.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 		37E78C0E292682C300DA1232 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				37C3247E294A566600824107 /* InfractionView.swift */,
 				373E5CC129258BBE00631727 /* ProfileStatsView.swift */,
 				373E5C4929251CDA00631727 /* ContentView.swift */,
 				373E5C752925200400631727 /* LeaderboardView.swift */,
@@ -357,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37C3247B29478ED800824107 /* InfractionsController.swift in Sources */,
+				37C3247F294A566600824107 /* InfractionView.swift in Sources */,
 				373E5C7A292525F800631727 /* SettingsView.swift in Sources */,
 				37C3246D293FC4CA00824107 /* CameraController.swift in Sources */,
 				373E5C762925200400631727 /* LeaderboardView.swift in Sources */,
@@ -365,6 +372,7 @@
 				373E5C4A29251CDA00631727 /* ContentView.swift in Sources */,
 				37E78C152927D02300DA1232 /* LocationController.swift in Sources */,
 				37E78C10292686FB00DA1232 /* AboutView.swift in Sources */,
+				37C3247D2948EBAE00824107 /* Infraction.swift in Sources */,
 				373E5CC229258BBE00631727 /* ProfileStatsView.swift in Sources */,
 				373E5C7229251D7400631727 /* ProfileView.swift in Sources */,
 				373E5CC429258BEB00631727 /* Drive.swift in Sources */,
