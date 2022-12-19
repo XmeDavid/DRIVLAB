@@ -13,9 +13,13 @@ struct LeaderboardView: View {
     
     var body: some View {
         VStack{
-            PodiumView()
-            ProfileStatsView()
-            RankingsView(users:usersViewModel.users)
+            if(usersViewModel.users.isEmpty){
+                LoadingView()
+            } else{
+                PodiumView(users:usersViewModel.users)
+                ProfileStatsView()
+                RankingsView(users:usersViewModel.users)
+            }
         }.onAppear(){
             usersViewModel.fetchData()
         }
@@ -25,5 +29,14 @@ struct LeaderboardView: View {
 struct LeaderboardView_Previews: PreviewProvider {
     static var previews: some View {
         LeaderboardView()
+    }
+}
+
+struct LoadingView: View{
+    var body: some View{
+        ZStack{
+            Color(.systemBackground).ignoresSafeArea()
+            ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .green)).scaleEffect(3)
+        }
     }
 }
