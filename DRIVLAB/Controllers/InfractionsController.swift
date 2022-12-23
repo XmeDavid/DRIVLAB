@@ -159,10 +159,10 @@ extension CameraController {
     func createInfraction(){
         print("Infraction!!!!")
         
-        var infraction: Infraction = Infraction(
+        let infraction: Infraction = Infraction(
             driveId: UserDefaults.standard.string(forKey: "currentDriveId") ?? "Error - no Drive ID",
             date: Date(),
-            coordinates: LocationViewModel().getCoordinates() ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
+            coordinates: LocationViewModel().getCoordinates(),
             type: "stop sign"
         )
         InfractionViewModel().createInfraction(infraction: infraction)

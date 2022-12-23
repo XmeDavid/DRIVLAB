@@ -19,6 +19,8 @@ struct Infraction: Identifiable{
         switch type{
         case "stop sign":
             return "Stop Sign from \(Date.asShort(date: date))"
+        case "speed limit":
+            return "Speed Limit from \(Date.asShort(date: date))"
         default:
             return "Unknown Infraction"
         }
@@ -30,8 +32,6 @@ class InfractionViewModel: ObservableObject{
     @Published var infractions = [Infraction]()
     
     private var db = Firestore.firestore()
-    
-
     
     func createInfraction(infraction: Infraction){
         db.collection("infractions").addDocument(data: [

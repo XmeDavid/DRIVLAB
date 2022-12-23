@@ -49,22 +49,31 @@ class DrivesViewModel: ObservableObject{
     
     private var db = Firestore.firestore()
     
-    func startDrive(drive: Drive){
+    func startDrive(driveId: String){
+        
+        let userID = "1" ///TODO: Implement User integration later, or maybe not, depends if auth is gonna be used.
+        
+        currentDrive = Drive(
+            id: driveId,
+            user_id: userID,
+            startDate: Date()
+        )
+        
         db.collection("drives").addDocument(data: [
-            "id": drive.id,
-            "user_id": drive.user_id,
-            "startDate": Date.getDate(date: drive.startDate),
+            "id": currentDrive!.id,
+            "user_id": currentDrive!.user_id,
+            "startDate": Date.getDate(date: currentDrive!.startDate),
             "endDate": "",
-            "infractionsMade": drive.infractionsMade,
-            "averageSpeed": drive.averageSpeed,
-            "topSpeed": drive.topSpeed,
-            "distance": drive.distance
+            "infractionsMade": currentDrive!.infractionsMade,
+            "averageSpeed": currentDrive!.averageSpeed,
+            "topSpeed": currentDrive!.topSpeed,
+            "distance": currentDrive!.distance
         ])
 
     }
     
     //TODO
-    func endDrive(){
+    func endDrive(topSpeed: Double, averageSpeed: Double){
         guard let currentDriveId = UserDefaults.standard.string(forKey: "currentDriveId") else {
             print("Error")
             return
@@ -84,10 +93,10 @@ class DrivesViewModel: ObservableObject{
                     let document = querySnapshot!.documents.first
                     document!.reference.updateData([
                         "endDate": Date.getDate(date: Date()),
-                        "infractionsMade": infractionModel.infractions.count, //TODO Update this by querying the list of infractions and counting
-                        "averageSpeed": self.currentDrive?.averageSpeed ?? 0.0,
-                        "topSpeed": self.currentDrive?.topSpeed ?? 0.0,
-                        "distance": self.currentDrive?.distance ?? 0.0
+                        "infractionsMade": infractionModel.infractions.count, ///TODO Update this by querying the list of infractions and counting
+                        "averageSpeed": averageSpeed,
+                        "topSpeed": topSpeed,
+                        "distance": self.currentDrive?.distance ?? 0.0 ///TODO: Distances in general
                     ])
                 }
             }

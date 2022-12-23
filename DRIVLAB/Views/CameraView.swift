@@ -14,21 +14,34 @@ struct CameraView: View {
     @ObservedObject var locationViewModel = LocationViewModel()
     @ObservedObject var driveViewModel = DrivesViewModel()
     
-    @State private var timer: DispatchSourceTimer?
     @State private var speedCheckCount: Double = 0
     
     var body: some View {
+        
+        
         if currentDriveId != "" {
             ZStack(alignment: .top){
                 Text("Starting...")
                 HostedCameraController().ignoresSafeArea()
                 VStack{
                     if self.showSpeed == true {
-                        Text("\(Int(locationViewModel.currentSpeed))")
-                            .font(.system(size: 82.0))
-                            .fontWeight(.regular)
+                        VStack{
+                            HStack{
+                                Text("\(Int(locationViewModel.currentSpeed))")
+                                    .font(.system(size: 92.0))
+                                    .fontWeight(.light)
+                                Image(systemName: "kph.circle")
+                                    .font(.system(size:64))
+                                    
+                            }
                             .padding()
-                        Text("\(driveViewModel.currentDrive?.averageSpeed ?? 0, specifier: "%.2f")")
+                            HStack{
+                                Text("Average Speed:")
+                                Text("\(locationViewModel.averageSpeed, specifier: "%.1f")")
+                                    .fontWeight(.bold)
+                            }
+                            .offset(y: -32)
+                        }
                     }
                     Spacer()
                     Button(action: endDrive){
@@ -79,64 +92,25 @@ struct CameraView: View {
     }
     
     func startDrive(){
+        locationViewModel.resumeUpdates()
         currentDriveId = UUID().uuidString
         
-        driveViewModel.currentDrive = Drive(
-            id: currentDriveId,
-            user_id: "1",
-            startDate: Date()
-        )
+        driveViewModel.startDrive(driveId: currentDriveId)
         
-        driveViewModel.startDrive(
-            drive: driveViewModel.currentDrive!
-        )
-        startTimer()
+        locationViewModel.startSpeedCheck()
     }
     
-    func checkTopSpeed(){
-        if currentDriveId != "" {
-            let currentSpeed = locationViewModel.currentSpeed
-            
-            let newAverageRatio:Double = speedCheckCount / (speedCheckCount + 1)
-            let preAverage:Double  = driveViewModel.currentDrive!.averageSpeed * newAverageRatio
-            let addToAverage:Double  = currentSpeed / (speedCheckCount + 1)
-            let newAverage = preAverage + addToAverage
-            speedCheckCount += 1
-        
-            driveViewModel.currentDrive!.averageSpeed = newAverage
-            
-            print(newAverage)
-            
-            if currentSpeed > driveViewModel.currentDrive!.topSpeed {
-                driveViewModel.currentDrive!.topSpeed = currentSpeed
-            }
-        }
-    }
     
-    func startTimer() {
-        let queue = DispatchQueue(label: Bundle.main.bundleIdentifier! + ".timer")
-        timer = DispatchSource.makeTimerSource(queue: queue)
-        timer!.schedule(deadline: .now(), repeating: .seconds(1))
-        timer!.setEventHandler { [self] in
-            // do whatever stuff you want on the background queue here here
 
-            checkTopSpeed()
-
-            DispatchQueue.main.async {
-                // update your model objects and/or UI here
-            }
-        }
-        timer!.resume()
-    }
-
-    func stopTimer() {
-        timer?.cancel()
-        timer = nil
-    }
     
     func endDrive(){
-        stopTimer()
-        driveViewModel.endDrive()
+        driveViewModel.endDrive(
+            topSpeed: locationViewModel.topSpeed,
+            averageSpeed: locationViewModel.averageSpeed
+        )
+
+        locationViewModel.stopUpdates()
+        locationViewModel.stopSpeedCheck()
         currentDriveId = ""
     }
 }
