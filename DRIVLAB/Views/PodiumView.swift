@@ -17,7 +17,7 @@ struct PodiumView: View {
     var body: some View {
     
         HStack(
-            alignment: .top,
+            alignment: .bottom,
             spacing: 10
         ) {
             ForEach(
@@ -31,30 +31,49 @@ struct PodiumView: View {
                             Image(systemName: "crown.fill").foregroundColor(.yellow) .scaleEffect(2).offset(y: -10)
                             
                             ZStack{
-                                Image(systemName: "person.fill")
+                                
+                                Image("image")
                                   .resizable()
                                   .frame(width: 128, height: 128)
+                                  .overlay{
+                                      Circle().stroke(.white, lineWidth: 2)
+                                  }
                                   .foregroundColor(.white)
-                                  .padding(20)
-                                  .background(Color.blue)
                                   .clipShape(Circle())
                                 Text(users[el].name.description + users[el].user_xp.description)
                             }
                         }
                      }
-                     else
-                     {
-                         ZStack{
-                             Image(systemName: "person.fill")
-                               .resizable()
-                               .frame(width: 32, height: 32)
-                               .foregroundColor(.white)
-                               .padding(20)
-                               .background(Color.green)
-                               .clipShape(Circle())
-                             Text(users[el].name.description + users[el].user_xp.description).offset(y:25)
-                         }.offset(y: 85)
-                     }
+                    else if (el == 0){
+                        ZStack{
+                            Image("image")
+                              .resizable()
+                              .frame(width: 64, height: 64)
+                              .foregroundColor(.white)
+                              .clipShape(Circle())
+                              .overlay{
+                                  Image("2nd_place_overlay")
+                                      .resizable()
+                                      .frame(width: 72, height: 72)
+                              }
+                            Text(users[el].name.description + users[el].user_xp.description)
+                        }
+                        
+                    }else {
+                        ZStack{
+                            Image("image")
+                              .resizable()
+                              .frame(width: 64, height: 64)
+                              .foregroundColor(.white)
+                              .clipShape(Circle())
+                              .overlay{
+                                  Image("3rd_place_overlay")
+                                      .resizable()
+                                      .frame(width: 72, height: 72)
+                              }
+                            Text(users[el].name.description + users[el].user_xp.description)
+                        }
+                    }
                }
             }
         }.onAppear{users = handleUsers(users: users)}
@@ -73,7 +92,8 @@ func handleUsers(users: [User]) -> [User]{
         $0.user_xp > $1.user_xp
     }
     
-    //sortedUsers[1].user_xp += 50
+    sortedUsers[1].user_xp += 50
+    sortedUsers[2].user_xp += 40
     
     sortedUsers.swapAt(0, 1)
     
