@@ -62,8 +62,10 @@ class UsersViewModel: ObservableObject{
 
     }
     
-    func fetchData(){
-        db.collection("users").getDocuments() { (querySnapshot, err) in
+    func fetchData(orderBy: String = "user_xp"){ //It works!
+        db.collection("users")
+            .order(by: orderBy, descending: true)
+            .getDocuments() { [self] (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
