@@ -71,10 +71,10 @@ class InfractionViewModel: ObservableObject{
         }
     }
     
-    func fetchData(driveId: String){
+    func fetchData(driveId: String, orderBy: String = "date"){
         infractions = [Infraction]()
-        print(driveId)
         db.collection("infractions")
+            .order(by: orderBy)
             .whereField("driveId", isEqualTo: driveId)
             .getDocuments() { (querySnapshot, err) in
             if let err = err {

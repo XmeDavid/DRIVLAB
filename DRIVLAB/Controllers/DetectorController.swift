@@ -2,7 +2,7 @@ import Vision
 import AVFoundation
 import UIKit
 
-extension CameraController {
+extension DRIVLABController {
     
     func setupDetector() {
         guard let modelURL = Bundle.main.url(forResource: "yolov5sTraffic", withExtension: "mlmodelc") else {

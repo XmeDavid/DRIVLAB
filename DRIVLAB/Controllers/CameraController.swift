@@ -4,7 +4,7 @@ import AVFoundation
 import Vision
 
 
-class CameraController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class DRIVLABController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     private var permissionGranted = false // Flag for permission
     private let captureSession = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "sessionQueue")
@@ -122,9 +122,9 @@ class CameraController: UIViewController, AVCaptureVideoDataOutputSampleBufferDe
     }
 }
 
-struct HostedCameraController: UIViewControllerRepresentable {
+struct HostedDRIVLABController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewController {
-        return CameraController()
+        return DRIVLABController()
         }
 
         func updateUIViewController(_ uiViewController: UIViewController, context: Context) {

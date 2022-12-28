@@ -123,8 +123,10 @@ class DrivesViewModel: ObservableObject{
         }
     }
     
-    func fetchData(){
-        db.collection("drives").getDocuments() { (querySnapshot, err) in
+    func fetchData(orderBy: String = "startDate"){
+        db.collection("drives")
+            .order(by: orderBy, descending: true)
+            .getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -159,13 +161,13 @@ extension Date{
     
     static func getDate(str: String) -> Date{
         let df = DateFormatter()
-        df.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        df.dateFormat = "yyyy/MM/dd HH:mm:ss"
         return df.date(from: str) ?? Date()
     }
     
     static func getDate(date: Date) -> String{
         let df = DateFormatter()
-        df.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        df.dateFormat = "yyyy/MM/dd HH:mm:ss"
         return df.string(from: date)
     }
     

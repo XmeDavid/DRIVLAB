@@ -54,7 +54,7 @@ struct Queue<T> {
     }
 }
 
-extension CameraController {
+extension DRIVLABController {
     
     
     func handleDetection(observation: VNRecognizedObjectObservation, bounds: CGRect){

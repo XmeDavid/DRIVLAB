@@ -22,7 +22,7 @@ struct CameraView: View {
         if currentDriveId != "" {
             ZStack(alignment: .top){
                 Text("Starting...")
-                HostedCameraController().ignoresSafeArea()
+                HostedDRIVLABController().ignoresSafeArea()
                 VStack{
                     if self.showSpeed == true {
                         VStack{
