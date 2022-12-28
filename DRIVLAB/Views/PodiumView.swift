@@ -20,9 +20,9 @@ struct PodiumView: View {
             alignment: .bottom,
             spacing: 10
         ) {
-        
-            FirstPlaceView(user: users[0])
+
             SecondPlaceView(user: users[1])
+            FirstPlaceView(user: users[0])
             ThirdPlaceView(user: users[2])
             
         }
@@ -34,18 +34,6 @@ struct PodiumView_Previews: PreviewProvider {
         PodiumView(users: [])
     }
 }
-
-/*func handleUsers(users: [User]) -> [User]{
-    
-    var sortedUsers = users.sorted {
-        $0.user_xp > $1.user_xp
-    }
-    
-    sortedUsers.swapAt(0, 1)
-    
-    return sortedUsers
-}*/
-
 
 struct FirstPlaceView: View {
     var user: User
@@ -107,44 +95,3 @@ struct ThirdPlaceView: View {
     }
 }
 
-/*ForEach(
-    0...2,
-    id: \.self
-) { el in
-    Group {
-        if (el == 1)
-         {
-            
-         }
-        else if (el == 0){
-            ZStack{
-                Image("image")
-                  .resizable()
-                  .frame(width: 64, height: 64)
-                  .foregroundColor(.white)
-                  .clipShape(Circle())
-                  .overlay{
-                      Image("2nd_place_overlay")
-                          .resizable()
-                          .frame(width: 72, height: 72)
-                  }
-                Text(users[el].name.description + users[el].user_xp.description)
-            }
-            
-        }else {
-            ZStack{
-                Image("image")
-                  .resizable()
-                  .frame(width: 64, height: 64)
-                  .foregroundColor(.white)
-                  .clipShape(Circle())
-                  .overlay{
-                      Image("3rd_place_overlay")
-                          .resizable()
-                          .frame(width: 72, height: 72)
-                  }
-                Text(users[el].name.description + users[el].user_xp.description)
-            }
-        }
-   }
-}*/
