@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import FirebaseFirestore
+import SwiftUI
 
 struct Infraction: Identifiable{
     var id: String = UUID().uuidString
@@ -15,6 +16,7 @@ struct Infraction: Identifiable{
     var date: Date
     var coordinates: CLLocationCoordinate2D
     var type: String
+    
     var asString: String{
         switch type{
         case "stop sign":
@@ -23,6 +25,32 @@ struct Infraction: Identifiable{
             return "Speed Limit from \(Date.asShort(date: date))"
         default:
             return "Unknown Infraction"
+        }
+    }
+    
+    var title: String{
+        switch type{
+        case "stop sign":
+            return "Stop Sign Infraction"
+        case "speed limit":
+            return "Speed Limit Infraction"
+        default:
+            return "Unknown Infraction"
+        }
+    }
+    
+    var time: String{
+        let df = DateFormatter()
+        df.dateFormat = "HH:mm:ss"
+        return df.string(from: date)
+    }
+    
+    var image: Image{
+        switch type{
+        case "stop sign":
+            return Image("stop-sign")
+        default:
+            return Image(systemName: "photo")
         }
     }
 }
@@ -71,8 +99,7 @@ class InfractionViewModel: ObservableObject{
         }
     }
     
-    func fetchData(driveId: String, orderBy: String = "date"){
-        infractions = [Infraction]()
+    func fetchData(driveId: String, orderBy: String = "date") {
         db.collection("infractions")
             .order(by: orderBy)
             .whereField("driveId", isEqualTo: driveId)
@@ -83,6 +110,7 @@ class InfractionViewModel: ObservableObject{
             } else {
                 if querySnapshot!.documents.count == 0 {
                     print("No items")
+                    return
                 }
                 self.infractions = querySnapshot!.documents.map{ queryDocumentSnapshot -> Infraction in
                     let data = queryDocumentSnapshot.data()
@@ -99,10 +127,9 @@ class InfractionViewModel: ObservableObject{
                         coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
                         type: type
                     )
-                    
                 }
             }
         }
-        print(infractions)
+        
     }
 }

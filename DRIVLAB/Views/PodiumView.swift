@@ -43,7 +43,7 @@ struct FirstPlaceView: View {
             
             ZStack{
                 
-                Image("image")
+                Image(systemName:"person.crop.circle.fill")
                   .resizable()
                   .frame(width: 128, height: 128)
                   .overlay{
@@ -61,7 +61,7 @@ struct SecondPlaceView: View {
     var user: User
     var body: some View {
         ZStack{
-            Image("image")
+            Image(systemName:"person.crop.circle.fill")
               .resizable()
               .frame(width: 64, height: 64)
               .foregroundColor(.white)
@@ -80,7 +80,7 @@ struct ThirdPlaceView: View {
     var user: User
     var body: some View {
         ZStack{
-            Image("image")
+            Image(systemName:"person.crop.circle.fill")
               .resizable()
               .frame(width: 64, height: 64)
               .foregroundColor(.white)

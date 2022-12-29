@@ -12,7 +12,7 @@ struct RankingLineView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack{
-                Image("image")
+                Image(systemName: "person.crop.circle.fill")
                     .resizable()
                     .frame(width: 24, height: 24)
                     .clipShape(Circle())
