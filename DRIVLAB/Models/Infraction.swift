@@ -103,6 +103,5 @@ class InfractionViewModel: ObservableObject{
                 }
             }
         }
-        print(infractions)
     }
 }

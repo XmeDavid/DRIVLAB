@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import Combine
+import MapKit
 
 
 class LocationViewModel: NSObject, ObservableObject {
@@ -18,6 +19,9 @@ class LocationViewModel: NSObject, ObservableObject {
     
     @Published var topSpeed: Double = 0.0
     @Published var averageSpeed: Double = 0.0
+    @Published var distance: Double = 0.0
+    
+    private var previousLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
     private var speedCheckCount: Double = 0.0
     private var timer: DispatchSourceTimer?
@@ -36,7 +40,6 @@ class LocationViewModel: NSObject, ObservableObject {
     }
     
     func stopUpdates() {
-        
         self.locationManager.stopUpdatingLocation()
     }
     func resumeUpdates() {
@@ -60,29 +63,29 @@ extension LocationViewModel: CLLocationManagerDelegate {
     }
     
     func getCoordinates() -> CLLocationCoordinate2D {
-        print(locationManager.location?.coordinate ?? "")
         return locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
     
-    func startSpeedCheck(){
+    func startLocationHandler(){
         speedCheckCount = 0
+        let interval = Int(UserDefaults.standard.double(forKey: "locationUpdateInterval") * 1000)
         let queue = DispatchQueue(label: Bundle.main.bundleIdentifier! + ".timer")
         timer = DispatchSource.makeTimerSource(queue: queue)
-        timer!.schedule(deadline: .now(), repeating: .seconds(1))
+        timer!.schedule(deadline: .now(), repeating: .microseconds(interval))
         timer!.setEventHandler { [self] in
             // do whatever stuff you want on the background queue here here
 
-
+            previousLocation = getCoordinates()
             DispatchQueue.main.async { [self] in
                 
                 checkSpeed()
-                
+                updateDistance()
             }
         }
         timer!.resume()
     }
     
-    func stopSpeedCheck(){
+    func stopLocationHandler(){
         timer?.cancel()
         timer = nil
     }
@@ -96,11 +99,19 @@ extension LocationViewModel: CLLocationManagerDelegate {
         }
     }
     
+    private func updateDistance(){
+        let currentLocation = getCoordinates()
+        let instantDistance = previousLocation.distanceKm(to: currentLocation)
+        distance = distance + instantDistance
+        previousLocation = currentLocation
+    }
+    
     private func computeRollingAverageSpeed(){
         self.averageSpeed = (averageSpeed*(speedCheckCount/(speedCheckCount+1))) + (currentSpeed/(speedCheckCount+1));
-        print(averageSpeed)
         self.speedCheckCount += 1
     }
+    
+    
     
     
     /**
@@ -137,3 +148,14 @@ extension LocationViewModel: CLLocationManagerDelegate {
     
 }
 
+extension CLLocationCoordinate2D {
+
+    func distance(to: CLLocationCoordinate2D) -> CLLocationDistance {
+        return MKMapPoint(self).distance(to: MKMapPoint(to))
+    }
+    
+    func distanceKm(to: CLLocationCoordinate2D) -> CLLocationDistance {
+        return MKMapPoint(self).distance(to: MKMapPoint(to)) / 1000.0
+    }
+
+}

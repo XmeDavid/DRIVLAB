@@ -73,7 +73,7 @@ class DrivesViewModel: ObservableObject{
     }
     
     //TODO
-    func endDrive(topSpeed: Double, averageSpeed: Double){
+    func endDrive(topSpeed: Double, averageSpeed: Double, distance: Double){
         guard let currentDriveId = UserDefaults.standard.string(forKey: "currentDriveId") else {
             print("Error")
             return
@@ -93,10 +93,10 @@ class DrivesViewModel: ObservableObject{
                     let document = querySnapshot!.documents.first
                     document!.reference.updateData([
                         "endDate": Date.getDate(date: Date()),
-                        "infractionsMade": infractionModel.infractions.count, ///TODO Update this by querying the list of infractions and counting
+                        "infractionsMade": infractionModel.infractions.count,
                         "averageSpeed": averageSpeed,
                         "topSpeed": topSpeed,
-                        "distance": self.currentDrive?.distance ?? 0.0 ///TODO: Distances in general
+                        "distance": distance
                     ])
                 }
             }

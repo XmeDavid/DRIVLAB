@@ -157,8 +157,6 @@ extension DRIVLABController {
     /// Actually create an infraction, still not sure, maybe locally, but probably on firebase
     /// Create a document or something for the drive, and
     func createInfraction(){
-        print("Infraction!!!!")
-        
         let infraction: Infraction = Infraction(
             driveId: UserDefaults.standard.string(forKey: "currentDriveId") ?? "Error - no Drive ID",
             date: Date(),

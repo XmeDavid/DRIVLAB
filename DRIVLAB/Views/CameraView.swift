@@ -41,6 +41,12 @@ struct CameraView: View {
                                     .fontWeight(.bold)
                             }
                             .offset(y: -32)
+                            HStack{
+                                Text("Distance:")
+                                Text("\(locationViewModel.distance, specifier: "%.1f") Km")
+                                    .fontWeight(.bold)
+                            }
+                            .offset(y: -16)
                         }
                     }
                     Spacer()
@@ -97,7 +103,7 @@ struct CameraView: View {
         
         driveViewModel.startDrive(driveId: currentDriveId)
         
-        locationViewModel.startSpeedCheck()
+        locationViewModel.startLocationHandler()
     }
     
     
@@ -106,11 +112,12 @@ struct CameraView: View {
     func endDrive(){
         driveViewModel.endDrive(
             topSpeed: locationViewModel.topSpeed,
-            averageSpeed: locationViewModel.averageSpeed
+            averageSpeed: locationViewModel.averageSpeed,
+            distance: locationViewModel.distance
         )
 
         locationViewModel.stopUpdates()
-        locationViewModel.stopSpeedCheck()
+        locationViewModel.stopLocationHandler()
         currentDriveId = ""
     }
 }
