@@ -23,11 +23,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack{
             List{
-                Section{
-                    NavigationLink("Create User"){
-                        Button("Create User", action: createUser)
-                    }
-                }
                 Section(header: Text("Basic Settings")){
                     HStack(alignment: .center) {
                         Toggle(isOn: $showSpeed) {
@@ -35,10 +30,24 @@ struct SettingsView: View {
                                 .font(.body)
                         }
                     }
-                }
-                Section{
+                
                     NavigationLink("Model Settings",destination: ModelSettingsView())
                 }
+                
+                Section(header: Text("Debug Tools")){
+                    NavigationLink("Create User"){
+                        Button("Create User", action: createUser)
+                            .buttonStyle(.borderedProminent)
+                    }
+                    NavigationLink("Force Profile Refresh"){
+                        VStack {
+                            Text("This will recalculate profiles stats.\nUsually after a drive the stats are added on top of the previously.\nPressing this will make the app get all the users history and re-calculate all the stats.")
+                            Button("Refresh", action: createUser)
+                                .buttonStyle(.borderedProminent)
+                        }
+                    }
+                }
+                
                 Section{
                     NavigationLink("About", destination: AboutView())
                 }

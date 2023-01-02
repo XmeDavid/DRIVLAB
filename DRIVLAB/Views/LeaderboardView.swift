@@ -17,11 +17,11 @@ struct LeaderboardView: View {
                 LoadingView()
             } else{
                 PodiumView(users:usersViewModel.users)
-                ProfileStatsView()
+                ProfileStatsView(user: usersViewModel.user)
                 RankingsView(users:usersViewModel.users)
             }
         }.onAppear(){
-            usersViewModel.fetchData()
+            usersViewModel.fetchAllUsers()
         }
     }
 }

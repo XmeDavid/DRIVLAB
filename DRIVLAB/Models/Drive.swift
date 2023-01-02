@@ -46,16 +46,15 @@ struct Drive: Identifiable {
 class DrivesViewModel: ObservableObject{
     @Published var drives = [Drive]()
     @Published var currentDrive: Drive? = nil
+    @Published var isEmpty:Bool = true
     
     private var db = Firestore.firestore()
     
     func startDrive(driveId: String){
         
-        let userID = "1" ///TODO: Implement User integration later, or maybe not, depends if auth is gonna be used.
-        
         currentDrive = Drive(
             id: driveId,
-            user_id: userID,
+            user_id: User.loggedUserId,
             startDate: Date()
         )
         
@@ -80,6 +79,28 @@ class DrivesViewModel: ObservableObject{
         }
         let infractionModel = InfractionViewModel()
         infractionModel.fetchData(driveId: currentDriveId)
+        let userModel = UsersViewModel()
+        
+        while userModel.loaded && infractionModel.loaded{
+            usleep(2000)
+        }
+
+        var updatedUser = userModel.user
+        
+        //Get this drives infraction
+        let driveInfractionsCount = infractionModel.infractions.count
+       
+        
+        if driveInfractionsCount  > 0{      //If no infractions means perfect drive, add that to the profile
+            updatedUser.total_infractions += driveInfractionsCount
+            updatedUser.current_streak = 0
+        }else{                              //If there are infractions add that to the total of the profile
+            updatedUser.perfect_drives += 1
+        }
+        
+        updatedUser.distance_driven += distance
+        
+        userModel.updateProfile(updatedUser: updatedUser)
         
         db.collection("drives")
             .whereField("id", isEqualTo: currentDriveId)
@@ -93,7 +114,7 @@ class DrivesViewModel: ObservableObject{
                     let document = querySnapshot!.documents.first
                     document!.reference.updateData([
                         "endDate": Date.getDate(date: Date()),
-                        "infractionsMade": infractionModel.infractions.count,
+                        "infractionsMade": driveInfractionsCount,
                         "averageSpeed": averageSpeed,
                         "topSpeed": topSpeed,
                         "distance": distance
@@ -102,8 +123,9 @@ class DrivesViewModel: ObservableObject{
             }
     }
     
+    
     ///TODO: Might be useless
-    func updateDrive(driveId: String, topSpeed: Double? = nil){
+    /*func updateDrive(driveId: String, topSpeed: Double? = nil){
         if let topSpeed = topSpeed {
             db.collection("drives")
                 .whereField("id", isEqualTo: driveId)
@@ -121,10 +143,11 @@ class DrivesViewModel: ObservableObject{
                     }
                 }
         }
-    }
+    }*/
     
     func fetchData(orderBy: String = "startDate"){
         db.collection("drives")
+            .whereField("user_id", isEqualTo: User.loggedUserId)
             .order(by: orderBy, descending: true)
             .getDocuments() { (querySnapshot, err) in
             if let err = err {
@@ -151,6 +174,7 @@ class DrivesViewModel: ObservableObject{
                         distance: distance
                     )
                 }
+                self.isEmpty = self.drives.isEmpty
             }
         }
     }

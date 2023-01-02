@@ -29,6 +29,8 @@ struct Infraction: Identifiable{
 
 
 class InfractionViewModel: ObservableObject{
+    @Published var loaded: Bool = false
+    
     @Published var infractions = [Infraction]()
     
     private var db = Firestore.firestore()
@@ -67,6 +69,7 @@ class InfractionViewModel: ObservableObject{
                     )
                     
                 }
+                self.loaded = true
             }
         }
     }
@@ -82,7 +85,6 @@ class InfractionViewModel: ObservableObject{
                 return
             } else {
                 if querySnapshot!.documents.count == 0 {
-                    print("No items")
                 }
                 self.infractions = querySnapshot!.documents.map{ queryDocumentSnapshot -> Infraction in
                     let data = queryDocumentSnapshot.data()
@@ -101,6 +103,7 @@ class InfractionViewModel: ObservableObject{
                     )
                     
                 }
+                self.loaded = true
             }
         }
     }

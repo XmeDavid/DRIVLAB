@@ -71,11 +71,7 @@ struct DriveDetailsView: View {
             
         }
             .onAppear{
-                print("Drive: \(drive.id)")
                 infractionsModel.fetchData(driveId: drive.id)
-                infractionsModel.infractions.forEach{ inf in
-                    print(inf)
-                }
             }
     }
 }
@@ -84,7 +80,7 @@ struct DriveDetailsView_Previews: PreviewProvider {
     
     static let drivePreview = Drive(
             id: "0",
-            user_id: "User #0",
+            user_id: User.loggedUserId,
             startDate: Date(),
             infractionsMade: 0,
             averageSpeed: 0.0,

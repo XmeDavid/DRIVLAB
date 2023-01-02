@@ -7,11 +7,16 @@
 
 import SwiftUI
 
+
+///This whole page can be deleted probably
 struct AboutView: View {
     var body: some View {
-        Text("This application was made under MEI-CM")
-            .navigationTitle("About")
-            .navigationBarTitleDisplayMode(.large)
+        VStack{
+            Text("About page to leave some random note idk\nWas used to test in the early stages navigation")
+        }
+        .navigationTitle("About")
+        .navigationBarTitleDisplayMode(.large)
+        
     }
         
 }

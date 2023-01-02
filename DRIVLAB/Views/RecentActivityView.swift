@@ -11,18 +11,30 @@ import SwiftUI
 struct RecentActivityView: View {
     
     
-    @ObservedObject var drivesModel = DrivesViewModel()
+    @ObservedObject var drivesModel: DrivesViewModel
     
+    init() {
+        self.drivesModel = DrivesViewModel()
+        self.drivesModel.fetchData()
+    }
     
     var body: some View {
-        NavigationStack(){
-            List(drivesModel.drives){ drive in
-                NavigationLink("Activity from " + Date.getDate(date: drive.startDate)){
-                    DriveDetailsView(drive: drive)
-                }
+        if drivesModel.isEmpty{
+            VStack{
+                Spacer()
+                Text("No Drives registered yet!")
+                    .foregroundColor(.gray)
+                Text("Go for a drive with DRIVLAB to see data here...")
+                    .foregroundColor(.gray)
+                Spacer()
             }
-            .onAppear(){
-                self.drivesModel.fetchData()
+        }else{
+            NavigationStack(){
+                List(drivesModel.drives){ drive in
+                    NavigationLink("Activity from " + Date.getDate(date: drive.startDate)){
+                        DriveDetailsView(drive: drive)
+                    }
+                }
             }
         }
     }

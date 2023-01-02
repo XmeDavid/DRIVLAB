@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    
+    @ObservedObject var userModel = UsersViewModel()
+    
     var body: some View {
         NavigationStack {
             VStack{
@@ -25,12 +28,12 @@ struct ProfileView: View {
                     VStack(alignment: .leading){
                         Text("Welcome,")
                             .font(.headline)
-                        Text("David Batista").font(.largeTitle)
+                        Text(userModel.user.name).font(.largeTitle)
                     }
                     Spacer()
                 }
                 Divider()
-                ProfileStatsView()
+                ProfileStatsView(user: userModel.user)
                 RecentActivityView()
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -40,6 +43,9 @@ struct ProfileView: View {
                     Image(systemName: "gearshape")
                 }
             }
+        }
+        .onAppear{
+            userModel.fetchLoggedUser()
         }
     }
 }
