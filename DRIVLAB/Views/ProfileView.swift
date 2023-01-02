@@ -16,7 +16,7 @@ struct ProfileView: View {
         NavigationStack {
             VStack{
                 HStack(){
-                    Image("image")
+                    Image(systemName:"person.crop.circle.fill")
                         .resizable()
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
