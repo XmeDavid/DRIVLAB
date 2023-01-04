@@ -12,11 +12,8 @@ import CoreLocation
 
 struct DetectorInstant{
     var dateTime: Date
-    var labels: [String]
+    var label: String
     var speed: Double
-    var topLabel: String {
-        return labels[0]
-    }
 }
 
 struct Queue<T> {
@@ -59,15 +56,11 @@ extension DRIVLABController {
     
     func handleDetection(observation: VNRecognizedObjectObservation, bounds: CGRect){
     
-        let speed: Double = 50//LocationViewModel().currentSpeed
+        let speed: Double = LocationViewModel().currentSpeed
         let now = Date()
         let instant = DetectorInstant(
             dateTime: now,
-            labels: [
-                observation.labels[0].identifier,
-                observation.labels[1].identifier,
-                observation.labels[2].identifier,
-            ],
+            label: observation.labels[0].identifier,
             speed: speed
         )
         detectionsInstant.add(instant)
@@ -81,7 +74,7 @@ extension DRIVLABController {
          */
         var i = 0
         detectionsInstant.newestX(lenght: 10).forEach { instant in
-            if(instant.labels.contains("stop sign")){
+            if instant.label == "stop sign"{
                 i += 1
             }
         }
@@ -98,19 +91,10 @@ extension DRIVLABController {
             stopSignExitedFrame = true
             importantTimestamps["stop_sign_exit_frame"] = Date()
         }
-        
-        if(stopSignEnteredFrame == false && stopSignExitedFrame == false){
-            //print("No stop sign")
-        }
-        
-        //Stop sign currently in frame
-        if(stopSignEnteredFrame == true && stopSignExitedFrame == false){
-            //print("Stop sign in Frame")
-        }
-        
+     
+
         //Stop sign just exited
         if(stopSignEnteredFrame == false && stopSignExitedFrame == true){
-            //print("Stop Sign just exited frame")
             checkStopInfraction()
         }
         

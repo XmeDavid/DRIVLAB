@@ -80,47 +80,49 @@ class DrivesViewModel: ObservableObject{
         let infractionModel = InfractionViewModel()
         infractionModel.fetchData(driveId: currentDriveId)
         let userModel = UsersViewModel()
-        
-        while userModel.loaded && infractionModel.loaded{
-            usleep(2000)
-        }
-
-        var updatedUser = userModel.user
-        
-        //Get this drives infraction
-        let driveInfractionsCount = infractionModel.infractions.count
-       
-        
-        if driveInfractionsCount  > 0{      //If no infractions means perfect drive, add that to the profile
-            updatedUser.total_infractions += driveInfractionsCount
-            updatedUser.current_streak = 0
-        }else{                              //If there are infractions add that to the total of the profile
-            updatedUser.perfect_drives += 1
-        }
-        
-        updatedUser.distance_driven += distance
-        
-        userModel.updateProfile(updatedUser: updatedUser)
-        
-        db.collection("drives")
-            .whereField("id", isEqualTo: currentDriveId)
-            .getDocuments(){ (querySnapshot, err) in
-                if let err = err {
-                    print("Error Getting documents: \(err)")
-                    return
-                } else if querySnapshot!.documents.count != 1 {
-                    print("There should only be one drive with this id, but found multiple, or none")
-                } else {
-                    let document = querySnapshot!.documents.first
-                    document!.reference.updateData([
-                        "endDate": Date.getDate(date: Date()),
-                        "infractionsMade": driveInfractionsCount,
-                        "averageSpeed": averageSpeed,
-                        "topSpeed": topSpeed,
-                        "distance": distance
-                    ])
-                }
+        Task{ ///There is no way to know when either model has loaded, thats why this weird contraption, and why its in a seperate Task,
+            while !userModel.loaded && !infractionModel.loaded{
+                try await Task.sleep(nanoseconds: 50_000_000)
             }
+            
+            var updatedUser = userModel.user
+            
+            //Get this drives infraction
+            let driveInfractionsCount = infractionModel.infractions.count
+           
+            
+            if driveInfractionsCount  > 0{      //If no infractions means perfect drive, add that to the profile
+                updatedUser.total_infractions += driveInfractionsCount
+                updatedUser.current_streak = 0
+            }else{                              //If there are infractions add that to the total of the profile
+                updatedUser.perfect_drives += 1
+            }
+            
+            updatedUser.distance_driven += distance
+            
+            userModel.updateProfile(updatedUser: updatedUser)
+        
+        
+            db.collection("drives")
+                .whereField("id", isEqualTo: currentDriveId)
+                .getDocuments(){ (querySnapshot, err) in
+                    if let err = err {
+                        print("Error Getting documents: \(err)")
+                        return
+                    } else if querySnapshot!.documents.count != 1 {
+                        print("There should only be one drive with this id, but found multiple, or none")
+                    } else {
+                        let document = querySnapshot!.documents.first
+                        document!.reference.updateData([
+                            "endDate": Date.getDate(date: Date()),
+                            "infractionsMade": driveInfractionsCount,
+                            "averageSpeed": averageSpeed,
+                            "topSpeed": topSpeed,
+                            "distance": distance
+                        ])
+                    }
+                }
+        }
     }
     
     

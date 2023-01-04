@@ -77,7 +77,7 @@ extension LocationViewModel: CLLocationManagerDelegate {
 
             previousLocation = getCoordinates()
             DispatchQueue.main.async { [self] in
-                
+                infractionCheck()
                 checkSpeed()
                 updateDistance()
             }
@@ -112,8 +112,6 @@ extension LocationViewModel: CLLocationManagerDelegate {
     }
     
     
-    
-    
     /**
             Right now infractions are very strict, in the future this should be adjusted for a more friendly approach,
             At the moment, going over 120, user gets an infraction, going back to to 120 and then back over, will result in two distinct infractions, even if they were commited in the same time frame
@@ -129,7 +127,8 @@ extension LocationViewModel: CLLocationManagerDelegate {
                     driveId: UserDefaults.standard.string(forKey: "currentDriveId")!,
                     date: Date(),
                     coordinates: getCoordinates(),
-                    type: "speed limit"
+                    type: "speed limit",
+                    value: "\(currentSpeed)"
                 ))
                 isOverSpeedLimit = true
                 return

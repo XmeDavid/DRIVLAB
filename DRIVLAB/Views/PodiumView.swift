@@ -41,7 +41,7 @@ struct FirstPlaceView: View {
         VStack {
             Image(systemName: "crown.fill").foregroundColor(.yellow) .scaleEffect(2).offset(y: -10)
             
-            ZStack{
+            VStack{
                 
                 Image(systemName:"person.crop.circle.fill")
                   .resizable()
@@ -51,7 +51,7 @@ struct FirstPlaceView: View {
                   }
                   .foregroundColor(.white)
                   .clipShape(Circle())
-                Text(user.name + user.user_xp.description)
+                Text(user.name)
             }
         }
     }
@@ -60,7 +60,7 @@ struct FirstPlaceView: View {
 struct SecondPlaceView: View {
     var user: User
     var body: some View {
-        ZStack{
+        VStack{
             Image(systemName:"person.crop.circle.fill")
               .resizable()
               .frame(width: 64, height: 64)
@@ -71,7 +71,7 @@ struct SecondPlaceView: View {
                       .resizable()
                       .frame(width: 72, height: 72)
               }
-            Text(user.name + user.user_xp.description)
+            Text(user.name)
         }
     }
 }
@@ -79,7 +79,7 @@ struct SecondPlaceView: View {
 struct ThirdPlaceView: View {
     var user: User
     var body: some View {
-        ZStack{
+        VStack{
             Image(systemName:"person.crop.circle.fill")
               .resizable()
               .frame(width: 64, height: 64)
@@ -90,7 +90,7 @@ struct ThirdPlaceView: View {
                       .resizable()
                       .frame(width: 72, height: 72)
               }
-            Text(user.name + user.user_xp.description)
+            Text(user.name)
         }
     }
 }

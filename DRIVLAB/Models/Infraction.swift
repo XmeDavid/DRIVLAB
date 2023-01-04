@@ -16,6 +16,7 @@ struct Infraction: Identifiable{
     var date: Date
     var coordinates: CLLocationCoordinate2D
     var type: String
+    var value: String?
     
     var asString: String{
         switch type{
@@ -67,10 +68,11 @@ class InfractionViewModel: ObservableObject{
         db.collection("infractions").addDocument(data: [
             "id": infraction.id,
             "driveId": infraction.driveId,
-            "endDate": Date.getDate(date: infraction.date),
+            "date": Date.getDate(date: infraction.date),
             "latitude": infraction.coordinates.latitude,
             "longitude": infraction.coordinates.longitude,
             "type": infraction.type,
+            "value": infraction.value ?? ""
         ])
 
     }
@@ -110,9 +112,9 @@ class InfractionViewModel: ObservableObject{
             if let err = err {
                 print("Error getting documents: \(err)")
                 return
+            } else if querySnapshot!.documents.count == 0 { ///Handle no infractions maybe??
+                print("No infractions found!")
             } else {
-                if querySnapshot!.documents.count == 0 { ///Handle no infractions maybe??
-                }
                 self.infractions = querySnapshot!.documents.map{ queryDocumentSnapshot -> Infraction in
                     let data = queryDocumentSnapshot.data()
                     let id = data["id"] as? String ?? ""

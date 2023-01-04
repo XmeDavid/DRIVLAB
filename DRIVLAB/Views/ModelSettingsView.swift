@@ -10,8 +10,8 @@ import SwiftUI
 struct ModelSettingsView: View {
     @AppStorage("visualizeDetections") var visualizeDetections = true
     @AppStorage("showLabels") var showLabels = true
-    //@AppStorage("iouThreshold") var iouThreshold = 0.6
-    //@AppStorage("confidenceThreshold") var confidenceThreshold = 0.45
+    @AppStorage("iouThreshold") var iouThreshold = 0.6
+    @AppStorage("confidenceThreshold") var confidenceThreshold = 0.45
     @AppStorage("locationUpdateInterval") var locationUpdateInterval = 0.9
     
     var body: some View {

@@ -16,9 +16,10 @@ struct LeaderboardView: View {
             if(usersViewModel.users.isEmpty){
                 LoadingView()
             } else{
-                PodiumView(users:usersViewModel.users)
-                ProfileStatsView(user: usersViewModel.user)
+                PodiumView(users:usersViewModel.users).padding(.top)
+                //ProfileStatsView(user: usersViewModel.user)
                 RankingsView(users:usersViewModel.users)
+                Spacer()
             }
         }.onAppear(){
             usersViewModel.fetchAllUsers()
