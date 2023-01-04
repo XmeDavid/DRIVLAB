@@ -12,8 +12,10 @@ struct RankingsView: View {
     var users: [User]
     
     var body: some View {
-        ForEach(users, id:\.self) { user in
-            RankingLineView(user: user)
+        ScrollView{
+            ForEach(users, id:\.self) { user in
+                RankingLineView(user: user)
+            }
         }
     }
 }
