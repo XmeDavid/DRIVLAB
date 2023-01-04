@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PodiumView: View {
     
+    
     @State var users: [User]
     
     @State private var isLoading = false
@@ -49,7 +50,6 @@ struct FirstPlaceView: View {
                   .overlay{
                       Circle().stroke(.white, lineWidth: 2)
                   }
-                  .foregroundColor(.white)
                   .clipShape(Circle())
                 Text(user.name)
             }
@@ -58,18 +58,17 @@ struct FirstPlaceView: View {
 }
 
 struct SecondPlaceView: View {
+    @Environment(\.colorScheme) var colorScheme
     var user: User
     var body: some View {
         VStack{
-            Image(systemName:"person.crop.circle.fill")
+            Image(systemName: colorScheme  == .dark ? "person.crop.circle.fill" : "person.crop.circle")
               .resizable()
               .frame(width: 64, height: 64)
-              .foregroundColor(.white)
               .clipShape(Circle())
               .overlay{
                   Image("2nd_place_overlay")
                       .resizable()
-                      .frame(width: 72, height: 72)
               }
             Text(user.name)
         }
@@ -77,18 +76,17 @@ struct SecondPlaceView: View {
 }
 
 struct ThirdPlaceView: View {
+    @Environment(\.colorScheme) var colorScheme
     var user: User
     var body: some View {
         VStack{
-            Image(systemName:"person.crop.circle.fill")
+            Image(systemName: colorScheme  == .dark ? "person.crop.circle.fill" : "person.crop.circle")
               .resizable()
               .frame(width: 64, height: 64)
-              .foregroundColor(.white)
               .clipShape(Circle())
               .overlay{
                   Image("3rd_place_overlay")
                       .resizable()
-                      .frame(width: 72, height: 72)
               }
             Text(user.name)
         }
