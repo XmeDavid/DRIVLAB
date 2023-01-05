@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		371BAA912965F34100D35088 /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BAA902965F34100D35088 /* PopUpView.swift */; };
+		371BAA942965F3FA00D35088 /* PopUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BAA932965F3FA00D35088 /* PopUpViewModel.swift */; };
+		371BAA96296648F700D35088 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BAA95296648F700D35088 /* UserViewModel.swift */; };
+		371BAA982966497000D35088 /* DriveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BAA972966497000D35088 /* DriveViewModel.swift */; };
+		371BAA9A296649B500D35088 /* InfractionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371BAA99296649B500D35088 /* InfractionViewModel.swift */; };
 		373E5C4829251CDA00631727 /* DRIVLABApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C4729251CDA00631727 /* DRIVLABApp.swift */; };
 		373E5C4A29251CDA00631727 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E5C4929251CDA00631727 /* ContentView.swift */; };
 		373E5C4C29251CDD00631727 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 373E5C4B29251CDD00631727 /* Assets.xcassets */; };
@@ -59,6 +64,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		371BAA902965F34100D35088 /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		371BAA932965F3FA00D35088 /* PopUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewModel.swift; sourceTree = "<group>"; };
+		371BAA95296648F700D35088 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		371BAA972966497000D35088 /* DriveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveViewModel.swift; sourceTree = "<group>"; };
+		371BAA99296649B500D35088 /* InfractionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfractionViewModel.swift; sourceTree = "<group>"; };
 		373E5C4429251CDA00631727 /* DRIVLAB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DRIVLAB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		373E5C4729251CDA00631727 /* DRIVLABApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DRIVLABApp.swift; sourceTree = "<group>"; };
 		373E5C4929251CDA00631727 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,6 +131,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		371BAA922965F3DC00D35088 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				371BAA932965F3FA00D35088 /* PopUpViewModel.swift */,
+				371BAA95296648F700D35088 /* UserViewModel.swift */,
+				371BAA972966497000D35088 /* DriveViewModel.swift */,
+				371BAA99296649B500D35088 /* InfractionViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		373E5C3B29251CDA00631727 = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +165,7 @@
 		373E5C4629251CDA00631727 /* DRIVLAB */ = {
 			isa = PBXGroup;
 			children = (
+				371BAA922965F3DC00D35088 /* ViewModels */,
 				37C32476294119E400824107 /* Constants.swift */,
 				37E78C132927CF9900DA1232 /* Controllers */,
 				37E78C0E292682C300DA1232 /* Views */,
@@ -208,6 +230,7 @@
 				37C32464292FB26000824107 /* RankingsView.swift */,
 				37C32466292FB28D00824107 /* RankingLineView.swift */,
 				37C3247829473A9800824107 /* ModelSettingsView.swift */,
+				371BAA902965F34100D35088 /* PopUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -364,9 +387,11 @@
 			files = (
 				37C3247B29478ED800824107 /* InfractionsController.swift in Sources */,
 				37C3247F294A566600824107 /* InfractionView.swift in Sources */,
+				371BAA9A296649B500D35088 /* InfractionViewModel.swift in Sources */,
 				373E5C7A292525F800631727 /* SettingsView.swift in Sources */,
 				37C3246D293FC4CA00824107 /* CameraController.swift in Sources */,
 				373E5C762925200400631727 /* LeaderboardView.swift in Sources */,
+				371BAA982966497000D35088 /* DriveViewModel.swift in Sources */,
 				37C32465292FB26000824107 /* RankingsView.swift in Sources */,
 				373E5C7C2925403B00631727 /* DriveDetailsView.swift in Sources */,
 				373E5C4A29251CDA00631727 /* ContentView.swift in Sources */,
@@ -377,7 +402,9 @@
 				373E5C7229251D7400631727 /* ProfileView.swift in Sources */,
 				373E5CC429258BEB00631727 /* Drive.swift in Sources */,
 				373E5C4829251CDA00631727 /* DRIVLABApp.swift in Sources */,
+				371BAA912965F34100D35088 /* PopUpView.swift in Sources */,
 				373E5C7429251DBB00631727 /* CameraView.swift in Sources */,
+				371BAA942965F3FA00D35088 /* PopUpViewModel.swift in Sources */,
 				37C3246F2941090A00824107 /* yolov5sTraffic.mlmodel in Sources */,
 				37C3247929473A9800824107 /* ModelSettingsView.swift in Sources */,
 				373E5C78292522EE00631727 /* RecentActivityView.swift in Sources */,
@@ -385,6 +412,7 @@
 				37C32467292FB28D00824107 /* RankingLineView.swift in Sources */,
 				373E5CC629258C0100631727 /* User.swift in Sources */,
 				37E78C122926B94500DA1232 /* PodiumView.swift in Sources */,
+				371BAA96296648F700D35088 /* UserViewModel.swift in Sources */,
 				37C3246C293FC4CA00824107 /* DetectorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

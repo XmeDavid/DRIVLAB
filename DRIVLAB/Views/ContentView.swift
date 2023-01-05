@@ -18,29 +18,34 @@ struct ContentView: View {
 
     @State private var tab = Tab.drivlab
     
+    @ObservedObject var popUpViewModel = Global.instance.popUpViewModel
+    
     var body: some View {
-        TabView(selection: $tab){
-            LeaderboardView()
-                .tabItem{
-                    Label("Leaderboard", systemImage: "trophy.circle.fill")
-                }
-                .tag(Tab.leaderboard)
-            CameraView()
-                .tabItem{
-                    Label("DRIVLAB", systemImage: "car.fill")
-                }
-                .tag(Tab.drivlab)
-            ProfileView()
-                .tabItem{
-                    Label("Profile", systemImage: "person.crop.circle.fill")
-                }
-                .tag(Tab.activity)
-        }.onAppear{
-            let tabBarAppearance = UITabBarAppearance()
-            tabBarAppearance.configureWithOpaqueBackground()
-            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        if popUpViewModel.isVisible{
+            popUpViewModel.viewUI
+        } else {
+            TabView(selection: $tab){
+                LeaderboardView()
+                    .tabItem{
+                        Label("Leaderboard", systemImage: "trophy.circle.fill")
+                    }
+                    .tag(Tab.leaderboard)
+                CameraView()
+                    .tabItem{
+                        Label("DRIVLAB", systemImage: "car.fill")
+                    }
+                    .tag(Tab.drivlab)
+                ProfileView()
+                    .tabItem{
+                        Label("Profile", systemImage: "person.crop.circle.fill")
+                    }
+                    .tag(Tab.activity)
+            }.onAppear{
+                let tabBarAppearance = UITabBarAppearance()
+                tabBarAppearance.configureWithOpaqueBackground()
+                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            }
         }
-        
     }
 }
 

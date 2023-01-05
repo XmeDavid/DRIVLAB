@@ -18,6 +18,10 @@ struct DetectorInstant{
 
 struct Queue<T> {
     private var elements: [T] = []
+    
+    var isEmpty: Bool{
+        return elements.isEmpty
+    }
 
     mutating func add(_ value: T) {
         elements.append(value)

@@ -29,4 +29,6 @@ struct Constants {
     
     static let urlObjectDetection: String = "https://www.neuralception.com/objectdetection"
     
+    static let speedLimit = 120.0
+    
 }
