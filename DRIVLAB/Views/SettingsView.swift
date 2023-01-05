@@ -19,6 +19,9 @@ struct SettingsView: View {
             photo_url: "www.drivlab.com/defaults/photo"
         ))
     }
+    private func showPopUp(){
+        Global.instance.popUpViewModel.isVisible = true
+    }
     
     var body: some View {
         NavigationStack{
@@ -45,6 +48,10 @@ struct SettingsView: View {
                             Button("Refresh", action: createUser)
                                 .buttonStyle(.borderedProminent)
                         }
+                    }
+                    NavigationLink("Show pop up"){
+                        Button("Show", action: showPopUp)
+                            .buttonStyle(.borderedProminent)
                     }
                 }
                 

@@ -171,7 +171,7 @@ struct SharableImageView: View {
                     infraction.image
                         .padding()
                     Text(infraction.time)
-                    Text("-50XP")
+                    Text("-\(infraction.xp_dif)XP")
                         .fontWeight(.bold)
                         .foregroundColor(.red)
                 }
