@@ -28,11 +28,11 @@ struct User: Hashable{
     
     ///This is probably bad, the idea is, we need a level system where each level gets harder, we could have an array of threasholds where if he passes that he gets a new level, but that would mean there would be a finite number of levels, this solution allows for an unlimited number of levels, each one is 40% harder to get then the previous.
     var level: Int{
-        var newLevelThreashold: Int = 10
+        var newLevelThreashold = Constants.firstLevelXP
         var level = 0
         while user_xp > newLevelThreashold{
             level = level + 1
-            newLevelThreashold = Int(Double(newLevelThreashold) * 1.4)
+            newLevelThreashold = Int(Double(newLevelThreashold) * Constants.levelDifficulty)
         }
         return level
     }

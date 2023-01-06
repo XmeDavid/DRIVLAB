@@ -31,4 +31,7 @@ struct Constants {
     
     static let speedLimit = 120.0
     
+    static let levelDifficulty = 1.4
+    static let firstLevelXP = 50
+    
 }
