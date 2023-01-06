@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ModelSettingsView: View {
-    @AppStorage("visualizeDetections") var visualizeDetections = true
-    @AppStorage("showLabels") var showLabels = true
+    
+    @State var visualizeDetections: Bool = Global.instance.visualizeDetections
+    @State var showLabels: Bool = Global.instance.showLabels
+    
     @AppStorage("iouThreshold") var iouThreshold = 0.6
     @AppStorage("confidenceThreshold") var confidenceThreshold = 0.45
     @AppStorage("locationUpdateInterval") var locationUpdateInterval = 0.9
@@ -22,12 +24,18 @@ struct ModelSettingsView: View {
                         Toggle(isOn: $visualizeDetections) {
                             Text("Show bounding boxes")
                                 .font(.body)
+                                .onChange(of: visualizeDetections) { newValue in
+                                    Global.instance.visualizeDetections = newValue
+                                }
                         }
                     }
                     HStack {
                         Toggle(isOn: $showLabels) {
                             Text("Show labels")
                                 .font(.body)
+                                .onChange(of: showLabels) { newValue in
+                                    Global.instance.showLabels = newValue
+                                }
                         }
                     }
                     

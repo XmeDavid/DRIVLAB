@@ -14,6 +14,9 @@ class Global{
     
     var popUpViewModel: PopUpViewModel
     
+    var visualizeDetections: Bool = true
+    var showLabels: Bool = true
+    
     init(){
         popUpViewModel = PopUpViewModel()
     }

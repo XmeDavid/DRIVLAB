@@ -39,12 +39,12 @@ extension DRIVLABController {
             
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
 
-            if UserDefaults.standard.bool(forKey: "visualizeDetections") == true {
+            if Global.instance.visualizeDetections == true {
                 let boxLayer = self.drawBoxes(objectBounds, label: label)
                 detectionLayer.addSublayer(boxLayer)
             }
             
-            if UserDefaults.standard.bool(forKey: "showLabels") == true {
+            if Global.instance.showLabels == true {
                 let labelLayer = self.drawLabels(objectBounds, label: label, confidence: confidence)
                 detectionLayer.addSublayer(labelLayer)
             }
