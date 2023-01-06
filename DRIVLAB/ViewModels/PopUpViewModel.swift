@@ -51,6 +51,9 @@ extension PopUpView{
         let screen = PopUpView(
             title: "You have reached Level \(level)",
             subtitle: "Congratulations!",
+            image: "medal",
+            imageOverlay: "\(level)",
+            showImage: true,
             actionText: "Let's Go!!",
             action: {
                 
@@ -71,10 +74,13 @@ extension PopUpView{
         guard drive.gainedXP != nil else {
             return
         }
-        
+        let isPositive: Bool = drive.gainedXP! > 0
+        let imageAlternative = Int.random(in: 1...4)
         let screen = PopUpView(
-            title: "You have gained \(drive.gainedXP!) XP",
+            title: isPositive ? "You have gained \(drive.gainedXP!) XP" : "You should reconsidere your driving habits...\nYou Lost \(drive.gainedXP!) XP",
             subtitle: "You have completed a \(drive.distance)Km Drive!",
+            image: isPositive ? "nice\(imageAlternative)" : "bad1",
+            showImage: true,
             actionText: "End Drive",
             action: {
                 

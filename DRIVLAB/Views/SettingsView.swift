@@ -20,6 +20,14 @@ struct SettingsView: View {
         ))
     }
     private func showPopUp(){
+        Global.instance.popUpViewModel.viewUI = PopUpView(
+            title: "Congratulations",
+            subtitle: "",
+            image: "medal",
+            imageOverlay: "1",
+            actionText: "Continue",
+            action: {}
+        )
         Global.instance.popUpViewModel.isVisible = true
     }
     

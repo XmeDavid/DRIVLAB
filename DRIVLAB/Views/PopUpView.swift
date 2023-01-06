@@ -21,7 +21,8 @@ struct PopUpView: View {
     var bodyText: String = ""
     var showBody: Bool = false
     
-    var image: String = "photo"
+    var image: String = "medal"
+    var imageOverlay: String = ""
     var showImage: Bool = false
     
     var actionText: String
@@ -33,6 +34,7 @@ struct PopUpView: View {
     var body: some View {
         ZStack{
             VStack{
+                Spacer()
                 Text(title)
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -45,9 +47,21 @@ struct PopUpView: View {
                 }
                 
                 if showImage{
-                    Image(image)
-                        .frame(maxWidth: UIScreen.screenWidth * 0.8)
-                        .padding()
+                        Image(image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: UIScreen.screenWidth * (imageOverlay != "" ? 1 : 0.8))
+                        .overlay{
+                            if imageOverlay != "" {
+                                Text(imageOverlay)
+                                    .foregroundColor(.black)
+                                    .shadow(radius: 100)
+                                    .font(Font.custom("Georgia", size: 128.0))
+                                    .offset(y: -48)
+                            }
+                        }
+                    
+                    
                 }
                 
                 if showBody {
@@ -113,7 +127,8 @@ struct PopUpView_Previews: PreviewProvider {
             subtitle: "Thanks to your drive, you earned 10XP",
             bodyText: "Good job Keep it Up!",
             showBody: true,
-            image: "image",
+            image: "nice4",
+            //imageOverlay: "14",
             showImage: true,
             actionText: "Continue!",
             action: function

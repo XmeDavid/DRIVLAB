@@ -82,10 +82,21 @@ extension Date{
         return df.string(from: date)
     }
     
-    static func asShort(date: Date) -> String{
+    var dateString: String{
         let df = DateFormatter()
         df.dateFormat = "dd/MM/yyyy"
-        return df.string(from: date)
+        return df.string(from: self)
     }
     
+    var dateTimeString: String {
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yy HH:mm"
+        return df.string(from: self)
+    }
+    
+    var timeString: String{
+        let df = DateFormatter()
+        df.dateFormat = "HH:mm:ss"
+        return df.string(from: self)
+    }
 }

@@ -20,9 +20,9 @@ struct Infraction: Identifiable{
     var asString: String{
         switch type{
         case "stop sign":
-            return "Stop Sign from \(Date.asShort(date: date))"
+            return "Stop Sign Infraction at \(date.timeString)"
         case "speed limit":
-            return "Speed Limit from \(Date.asShort(date: date))"
+            return "Speed Limit Infraction at \(date.timeString)"
         default:
             return "Unknown Infraction"
         }

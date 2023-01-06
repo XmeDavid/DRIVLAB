@@ -20,7 +20,7 @@ struct DriveDetailsView: View {
     var body: some View {
         VStack(alignment: .leading){
             //render()
-            Text("Report from " + Date.getDate(date:drive.startDate))
+            Text("Report from " + drive.startDate.dateTimeString)
                 .font(.title)
                 .padding()
             Divider()

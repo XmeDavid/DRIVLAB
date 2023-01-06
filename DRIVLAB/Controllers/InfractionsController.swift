@@ -96,15 +96,13 @@ extension DRIVLABController {
             importantTimestamps["stop_sign_exit_frame"] = Date()
         }
      
-
-        //Stop sign just exited
         if(stopSignEnteredFrame == false && stopSignExitedFrame == true){
             checkStopInfraction()
         }
         
         
         
-        if Date().timeIntervalSince(importantTimestamps["stop_sign_exit_frame"] ?? Date()) > 15 {
+        if Date().timeIntervalSince(importantTimestamps["stop_sign_exit_frame"] ?? Date()) > 10 {
             stopSignExitedFrame = false
             importantTimestamps["stop_sign_exit_frame"] = nil
         }
@@ -138,7 +136,7 @@ extension DRIVLABController {
         }else {
             let timeSincePossibleInfraction = Date().timeIntervalSince(importantTimestamps["possible_stop_infraction"]!)
             //If 10 seconds have passed and there still was no stop a.k.a. wasSpeedZero = true, then its an infraction
-            if timeSincePossibleInfraction > 3 {createInfraction()}
+            if timeSincePossibleInfraction > 5 {createInfraction()}
         }
     }
     

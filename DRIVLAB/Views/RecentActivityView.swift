@@ -31,7 +31,7 @@ struct RecentActivityView: View {
         }else{
             NavigationStack(){
                 List(drivesModel.drives){ drive in
-                    NavigationLink("Activity from " + Date.getDate(date: drive.startDate)){
+                    NavigationLink("Activity from " + drive.startDate.dateTimeString){
                         DriveDetailsView(drive: drive)
                     }
                 }
