@@ -15,6 +15,9 @@ struct ContentView: View {
 
         var id: Self { self }
     }
+    
+    @AppStorage("visualizeDetections") var visualizeDetections = true
+    @AppStorage("showLabels") var showLabels = true
 
     @State private var tab = Tab.drivlab
     
