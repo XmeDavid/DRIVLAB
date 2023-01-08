@@ -45,7 +45,7 @@ struct SettingsView: View {
                     NavigationLink("Model Settings",destination: ModelSettingsView())
                 }
                 
-                Section(header: Text("Debug Tools")){
+                /*Section(header: Text("Debug Tools")){
                     NavigationLink("Create User"){
                         Button("Create User", action: createUser)
                             .buttonStyle(.borderedProminent)
@@ -61,7 +61,7 @@ struct SettingsView: View {
                         Button("Show", action: showPopUp)
                             .buttonStyle(.borderedProminent)
                     }
-                }
+                }*/
                 
                 Section{
                     NavigationLink("About", destination: AboutView())

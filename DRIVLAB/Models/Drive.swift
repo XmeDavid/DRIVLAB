@@ -44,25 +44,32 @@ struct Drive: Identifiable {
 }
 
 extension Drive {
-    
     static func computeXP(drive: Drive, infractions: [Infraction]) -> Int{
-        //Default XP for going on a drive
-        var xp = 10.0
+        //Get the Drive XP, with no infraction
+        var xp = Double(Drive.computeXP(drive: drive))
         
-        //Give XP for distance
-        xp += drive.distance * 12.0
-
-        //Give XP for time driven
+        //Get XP Multiplier for multiple infractions.
+        let infractionCountMultiplier = 1.0 + (Double(infractions.count - 1) * 0.1)
         
-        let minutes = Int(Double(drive.endDate!.timeIntervalSince(drive.startDate)) / 60.0)
-        xp += Double(minutes * 4)
-        
-        //Take XP for infractions
-        let infractionCountMultiplier = 1.0 + (Double(infractions.count) * 0.1)
+        //Remove XP for each Infraction
         for infraction in infractions {
             xp -= Double(infraction.xp_dif) * infractionCountMultiplier
         }
         
+        return Int(xp)
+    }
+    
+    static func computeXP(drive: Drive) -> Int{
+        //Default XP for going on a drive
+        var xp = 5.0
+        
+        //Give XP for distance
+        xp += drive.distance * 12.0
+        
+        //Give XP for time driven
+        let minutes = Double(drive.startDate.timeIntervalSince(drive.endDate!) / 60.0)
+        xp += minutes * 2.0
+
         return Int(xp)
     }
 }

@@ -29,14 +29,25 @@ struct MapView: View {
     
     var body: some View {
         ZStack{
-            Map(coordinateRegion: $coordinateRegion, annotationItems: getAnotations(infraction: infraction)) {item in
-                MapMarker(coordinate: item.coordinate)
+            Map(coordinateRegion: $coordinateRegion, annotationItems: [infraction]){ item in
+                MapMarker(coordinate: item.coordinates)
+                /*MapAnnotation(coordinate: item.coordinates){
+                    ZStack{
+                        Text(item.valueString)
+                            .offset(y:-16)
+                        Circle()
+                            .size(CGSize(width: 20, height: 20))
+                        
+                    }
+                }*/
+                
             }
-            VStack{
+            VStack(alignment: .leading){
                 HStack{
                     Text(Date.getDate(date: infraction.date))
                     Spacer()
                 }
+                Text("\(infraction.valueString)")
                 Spacer()
             }
             

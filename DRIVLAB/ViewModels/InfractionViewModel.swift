@@ -42,12 +42,14 @@ class InfractionViewModel: ObservableObject{
                     let latitude = data["latitude"] as? Double ?? 0.0
                     let longitude = data["longitude"] as? Double ?? 0.0
                     let type = data["type"] as? String ?? ""
+                    let value = data["value"] as? String ?? ""
                     return Infraction(
                         id: id,
                         driveId: driveId,
                         date: date,
                         coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
-                        type: type
+                        type: type,
+                        value: value
                     )
                     
                 }
@@ -75,12 +77,14 @@ class InfractionViewModel: ObservableObject{
                     let latitude = data["latitude"] as? Double ?? 0.0
                     let longitude = data["longitude"] as? Double ?? 0.0
                     let type = data["type"] as? String ?? ""
+                    let value = data["value"] as? String ?? ""
                     return Infraction(
                         id: id,
                         driveId: driveId,
                         date: date,
                         coordinates: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
-                        type: type
+                        type: type,
+                        value: value
                     )
                 }
                 self.loaded = true

@@ -129,6 +129,15 @@ struct SharableImageView: View {
 
     var body: some View {
         VStack{
+            Text("Drive from \(drive.startDate.dateString)")
+                .font(.title)
+                .padding()
+            HStack {
+                Text("Drive XP: ")
+                Text("\(Drive.computeXP(drive: drive)) XP")
+                    .fontWeight(.bold)
+                    .foregroundColor(.green)
+            }
             HStack{
                 Spacer()
                 VStack{
@@ -171,12 +180,19 @@ struct SharableImageView: View {
                     infraction.image
                         .padding()
                     Text(infraction.time)
-                    Text("-\(infraction.xp_dif)XP")
+                    Text("-\(infraction.xp_dif) XP")
                         .fontWeight(.bold)
                         .foregroundColor(.red)
                 }
             }
-            
+            Divider()
+            HStack{
+                Text("Gained XP: ")
+                Text("\(Drive.computeXP(drive: drive, infractions: infractions)) XP")
+                    .fontWeight(.bold)
+                    .foregroundColor(.green)
+                    .padding()
+            }
             
         }.background(.white
             //Gradient Ideas

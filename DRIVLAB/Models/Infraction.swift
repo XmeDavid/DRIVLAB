@@ -28,6 +28,17 @@ struct Infraction: Identifiable{
         }
     }
     
+    var valueString: String{
+        switch type{
+        case "stop sign":
+            return ""
+        case "speed limit":
+            return "\(value ?? "") Km/h"
+        default:
+            return "Unknown Infraction"
+        }
+    }
+    
     var title: String{
         switch type{
         case "stop sign":
@@ -49,6 +60,8 @@ struct Infraction: Identifiable{
         switch type{
         case "stop sign":
             return Image("stop-sign")
+        case "speed limit":
+            return Image(systemName: "speedometer")
         default:
             return Image(systemName: "photo")
         }

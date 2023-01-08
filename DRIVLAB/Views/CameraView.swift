@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CameraView: View {
     
+    
+    @Environment(\.colorScheme) var colorScheme
+    
     @AppStorage("showSpeed") var showSpeed = true
     @AppStorage("currentDriveId") var currentDriveId = ""
     @ObservedObject var locationViewModel = LocationViewModel()
@@ -73,8 +76,9 @@ struct CameraView: View {
             }
         }else{
             VStack{
-                Text("DRIVLAB")
-                    .font(.system(size:72))
+                Image(colorScheme  == .dark ? "logo-white" : "logo-black")
+                    .resizable()
+                    .scaledToFit()
                     .padding()
                 Spacer()
                 Button(action: startDrive){
@@ -93,7 +97,7 @@ struct CameraView: View {
                     .cornerRadius(128)
                     .shadow(radius: 32)
                     .padding()
-            }
+            }.padding()
         }
     }
     

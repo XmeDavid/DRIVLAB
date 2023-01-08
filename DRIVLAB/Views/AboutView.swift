@@ -8,14 +8,41 @@
 import SwiftUI
 
 
-///This whole page can be deleted probably
 struct AboutView: View {
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
-        VStack{
-            Text("About page to leave some random note idk\nWas used to test in the early stages navigation")
-        }
-        .navigationTitle("About")
+        
+        ScrollView {
+            VStack{
+                Image(colorScheme  == .dark ? "logo-white" : "logo-black")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                Text("Developed By:")
+                    .font(.title)
+                Text("David Batista")
+                    .font(.largeTitle)
+                Text("Frederico Carvalho")
+                    .font(.largeTitle)
+                Text("Ivan Silva")
+                    .font(.largeTitle)
+                Spacer()
+                    .frame(height: 32)
+                Text("This project was done under the Master:")
+                Text("Computer Engineering – Mobile Computing")
+    
+                Image("ipl-logo")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                Image("yolov5-logo")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+            }
+            .navigationTitle("About")
         .navigationBarTitleDisplayMode(.large)
+        }
         
     }
         

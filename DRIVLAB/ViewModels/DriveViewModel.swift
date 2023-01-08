@@ -46,12 +46,12 @@ class DrivesViewModel: ObservableObject{
             print("Trying to end drive and it never started")
             return
         }
-        let endDate = Date() /// This is declared here and not where its used, since there might be a delay till the response from the server on the profile and infraction model, and we want the actualt time the user eneded the drive, in practice this diference is miniscule but its more acurate this way by a few miliseconds.
+        let endDate = Date()
         let infractionModel = InfractionViewModel()
         infractionModel.fetchData(driveId: currentDriveId)
         let userModel = UsersViewModel()
 
-        Task{ ///There is no way to know when either model has loaded, thats why this weird contraption, and why its in a seperate Task,
+        Task{
             while !userModel.loaded && !infractionModel.loaded{
                 try await Task.sleep(nanoseconds: 50_000_000)
             }

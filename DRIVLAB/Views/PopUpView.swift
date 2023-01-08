@@ -15,7 +15,7 @@ struct PopUpView: View {
     
     var title: String
     
-    var subtitle: String
+    var subtitle: String = ""
     var showSubtitle: Bool = true
     
     var bodyText: String = ""
@@ -117,21 +117,11 @@ struct PopUpView: View {
 
 struct PopUpView_Previews: PreviewProvider {
     
-    static func function(){
-        print("Hello world!")
-    }
-    
     static var previews: some View {
         PopUpView(
-            title: "You have earned 10 XP!",
-            subtitle: "Thanks to your drive, you earned 10XP",
-            bodyText: "Good job Keep it Up!",
-            showBody: true,
-            image: "nice4",
-            //imageOverlay: "14",
-            showImage: true,
-            actionText: "Continue!",
-            action: function
+            title: "Congratulations!",
+            actionText: "Continue",
+            action: {}
         )
     }
 }
