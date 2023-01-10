@@ -13,7 +13,6 @@ import CoreLocation
 struct DetectorInstant{
     var dateTime: Date
     var label: String
-    var speed: Double
 }
 
 struct Queue<T> {
@@ -21,6 +20,10 @@ struct Queue<T> {
     
     var isEmpty: Bool{
         return elements.isEmpty
+    }
+    
+    var count: Int{
+        return elements.count
     }
 
     mutating func add(_ value: T) {
@@ -58,86 +61,88 @@ struct Queue<T> {
 extension DRIVLABController {
     
     
-    func handleDetection(observation: VNRecognizedObjectObservation, bounds: CGRect){
+    func handleDetection(observation: VNRecognizedObjectObservation?){
     
-        let speed: Double = LocationViewModel().currentSpeed
         let now = Date()
-        let instant = DetectorInstant(
-            dateTime: now,
-            label: observation.labels[0].identifier,
-            speed: speed
-        )
-        detectionsInstant.add(instant)
+        
+        if observation == nil {
+            stopSignEnteredFrame = false
+            stopSignExitedFrame = true
+            importantTimestamps["stop_sign_exit_frame"] = Date()
+            let instant = DetectorInstant(
+                dateTime: now,
+                label: "background"
+            )
+            detectionsInstant.add(instant)
+        }else {
+            let instant = DetectorInstant(
+                dateTime: now,
+                label: observation!.labels[0].identifier
+            )
+            detectionsInstant.add(instant)
+        }
         
         
-        /**
-         The following piece of code serves to smooth out the results of detecting a stop sign
-         By looking at the top 3 possible labels, and watching the majority over the last 10 detections, ensures more reliablity on the detection
-         This will prevent situations, where the model might detect a stop sign where there is none, or miss a stop sign when it should be detected
-         This errors might occor in one or two frames, so by looking at a larger sample, this effect should be mitigated
-         */
+
+        
+        
+
         var i = 0
-        detectionsInstant.newestX(lenght: 10).forEach { instant in
+        detectionsInstant.newestX(lenght: 8).forEach { instant in
             if instant.label == "stop sign"{
                 i += 1
             }
         }
-        let stopSignedDetected = i > 5
+        let stopSignedDetected = i > 4
         
         
         
-        if stopSignedDetected == true {
+        if stopSignedDetected == true && stopSignEnteredFrame == false && stopSignExitedFrame == false {
             stopSignEnteredFrame = true
             importantTimestamps["stop_sign_enter_frame"] = Date()
         }
-        if stopSignedDetected == false && stopSignEnteredFrame == true{
+        if stopSignedDetected == false && stopSignEnteredFrame == true && stopSignExitedFrame == false{
             stopSignEnteredFrame = false
             stopSignExitedFrame = true
             importantTimestamps["stop_sign_exit_frame"] = Date()
         }
      
-        if(stopSignEnteredFrame == false && stopSignExitedFrame == true){
-            checkStopInfraction()
-        }
-        
-        
-        
-        if Date().timeIntervalSince(importantTimestamps["stop_sign_exit_frame"] ?? Date()) > 10 {
+        if(stopSignEnteredFrame == false && stopSignExitedFrame == true && isCheckingStopSign == false){
+            isCheckingStopSign = true
+            DispatchQueue(label: "pt.ipl.mei.cm.drivlab.check").async{
+                self.checkStopInfraction()
+            }
             stopSignExitedFrame = false
-            importantTimestamps["stop_sign_exit_frame"] = nil
+            
         }
         
-        //The instant recording list can be cleaned up after 10 seconds
-        let timeSinceLastIntervalRecorded = Date().timeIntervalSince(detectionsInstant.oldest!.dateTime)
-        if timeSinceLastIntervalRecorded > 10 {
+        //Only keep 10 instants
+        if detectionsInstant.count > 10 {
             detectionsInstant.remove()
         }
     }
     
-    func checkStopInfraction(){
-        //Get all instants after stop left the frame
-        let instantsAfterStop = detectionsInstant.get.filter { element in
-            return importantTimestamps["stop_sign_exit_frame"] ?? Date() < element.dateTime
+    func checkStopInfraction() {
+        guard let exitFrameTime = importantTimestamps["stop_sign_exit_frame"] else{
+            return
         }
-        //Check if at any points since then the veichle was stoped
-        let wasSpeedZero = instantsAfterStop.contains{ element in
-            return element.speed < 1
+        Task{
+            let locationViewModel = LocationViewModel()
+            while Date().timeIntervalSince(exitFrameTime) < 3 {
+                
+                try await Task.sleep(nanoseconds: 200_000_000)
+                let speed = locationViewModel.currentSpeed
+                
+                if speed < 2 {
+                    isCheckingStopSign = false
+                    return
+                }
+                
+            }
+            isCheckingStopSign = false
+            createInfraction()
         }
         
-        if wasSpeedZero {
-            importantTimestamps["possible_stop_infraction"] = nil
-            stopSignExitedFrame = false
-            stopSignEnteredFrame = false
-        }
-        
-        //If its first time detecting possible infraction, register timestamp, else check if 10 seconds have passed
-        if importantTimestamps["possible_stop_infraction"] == nil{
-            importantTimestamps["possible_stop_infraction"] = Date()
-        }else {
-            let timeSincePossibleInfraction = Date().timeIntervalSince(importantTimestamps["possible_stop_infraction"]!)
-            //If 10 seconds have passed and there still was no stop a.k.a. wasSpeedZero = true, then its an infraction
-            if timeSincePossibleInfraction > 5 {createInfraction()}
-        }
     }
     
     /// Actually create an infraction, still not sure, maybe locally, but probably on firebase

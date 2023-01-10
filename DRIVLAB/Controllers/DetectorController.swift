@@ -30,28 +30,32 @@ extension DRIVLABController {
     func extractDetections(_ results: [VNObservation]) {
         detectionLayer.sublayers = nil
         detectionLayer.zPosition = 1000.0
-        for observation in results where observation is VNRecognizedObjectObservation {
-            guard let objectObservation = observation as? VNRecognizedObjectObservation else { continue }
-            
-            let topLabelObservation = objectObservation.labels[0]
-            let label = topLabelObservation.identifier
-            let confidence = topLabelObservation.confidence
-            
-            let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
+        if results.isEmpty && stopSignEnteredFrame{
+            handleDetection(observation: nil)
+        }else{
+            for observation in results where observation is VNRecognizedObjectObservation {
+                guard let objectObservation = observation as? VNRecognizedObjectObservation else { continue }
+                
+                let topLabelObservation = objectObservation.labels[0]
+                let label = topLabelObservation.identifier
+                let confidence = topLabelObservation.confidence
+                
+                let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
 
-            if Global.instance.visualizeDetections == true {
-                let boxLayer = self.drawBoxes(objectBounds, label: label)
-                detectionLayer.addSublayer(boxLayer)
+                if Global.instance.visualizeDetections == true {
+                    let boxLayer = self.drawBoxes(objectBounds, label: label)
+                    detectionLayer.addSublayer(boxLayer)
+                }
+                
+                if Global.instance.showLabels == true {
+                    let labelLayer = self.drawLabels(objectBounds, label: label, confidence: confidence)
+                    detectionLayer.addSublayer(labelLayer)
+                }
+                
+                detectionLayer.transform  = CATransform3DMakeScale(1, -1, 1)
+                
+                handleDetection(observation: objectObservation)
             }
-            
-            if Global.instance.showLabels == true {
-                let labelLayer = self.drawLabels(objectBounds, label: label, confidence: confidence)
-                detectionLayer.addSublayer(labelLayer)
-            }
-            
-            detectionLayer.transform  = CATransform3DMakeScale(1, -1, 1)
-            
-            handleDetection(observation: objectObservation, bounds: objectBounds)
         }
     }
     

@@ -81,7 +81,7 @@ extension PopUpView{
         let imageAlternative = Int.random(in: 1...4)
         let screen = PopUpView(
             title: isPositive ? "You have gained \(drive.gainedXP!) XP" : "You should reconsidere your driving habits...\nYou Lost \(drive.gainedXP!) XP",
-            subtitle: "You have completed a \(drive.distance)Km Drive!",
+            subtitle: "You have completed a \(String(format: "%.2f Km", drive.distance)) Drive!",
             image: isPositive ? "nice\(imageAlternative)" : "bad1",
             showImage: true,
             actionText: "End Drive",

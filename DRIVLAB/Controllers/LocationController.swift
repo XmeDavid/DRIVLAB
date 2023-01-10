@@ -59,7 +59,7 @@ extension LocationViewModel: CLLocationManagerDelegate {
             speed = 0
         }
         
-        currentSpeed = speed * 3.6
+        self.currentSpeed = speed * 3.6
     }
     
     func getCoordinates() -> CLLocationCoordinate2D {

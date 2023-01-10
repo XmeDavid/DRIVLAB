@@ -19,6 +19,7 @@ class DRIVLABController: UIViewController, AVCaptureVideoDataOutputSampleBufferD
     
     var stopSignEnteredFrame:Bool = false
     var stopSignExitedFrame:Bool = false
+    var isCheckingStopSign: Bool = false
     var detectionsInstant: Queue<DetectorInstant> = Queue<DetectorInstant>()
     var importantTimestamps: [String:Date] = [:]
     
