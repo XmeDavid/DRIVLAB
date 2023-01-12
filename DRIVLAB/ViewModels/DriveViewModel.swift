@@ -43,7 +43,7 @@ class DrivesViewModel: ObservableObject{
             return
         }
         guard let _ = currentDrive else {
-            print("Trying to end drive and it never started")
+            print("Trying to end drive that never started")
             return
         }
         let endDate = Date()

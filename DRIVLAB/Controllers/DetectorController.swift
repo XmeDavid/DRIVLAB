@@ -35,6 +35,9 @@ extension DRIVLABController {
         }else{
             for observation in results where observation is VNRecognizedObjectObservation {
                 guard let objectObservation = observation as? VNRecognizedObjectObservation else { continue }
+                if objectObservation.labels[0].identifier != "stop sign"{
+                    return
+                }
                 
                 let topLabelObservation = objectObservation.labels[0]
                 let label = topLabelObservation.identifier
@@ -42,6 +45,7 @@ extension DRIVLABController {
                 
                 let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
 
+                
                 if Global.instance.visualizeDetections == true {
                     let boxLayer = self.drawBoxes(objectBounds, label: label)
                     detectionLayer.addSublayer(boxLayer)

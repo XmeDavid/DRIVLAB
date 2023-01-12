@@ -171,8 +171,6 @@ struct SharableImageView: View {
                     .gaugeStyle(.accessoryCircular)
                 }.padding()
                 Spacer()
-            }.onAppear{
-                print(infractions.count)
             }
             ForEach(infractions) { infraction in
                 Divider()
